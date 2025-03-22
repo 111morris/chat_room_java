@@ -6,15 +6,16 @@ the tcp chat room has two components
 
 
 so first the server will be responsible for 
--[] listening for incoming client connections
--[] managing each connected client
--[] relaying messages between clients 
+- [ ] listening for incoming client connections
+- [ ] the server is always running 
+- [ ] managing each connected client
+- [ ] relaying messages between clients 
 
 
 and the client will be responsible for:
--[] connecting to the server
--[] sending messages to the server 
--[] receiving messages from the server (broadcasted messages from other clients)
+- [ ] connecting to the server
+- [ ] sending messages to the server 
+- [ ] receiving messages from the server (broadcasted messages from other clients)
 
 
 things to consider 
@@ -33,8 +34,12 @@ ie. runnable >> task/job that can be executed by a thread and a thread >> is the
 - the serversocket listens for incoming client connections on a specific port and create a socket object to commuinicate witht the client
 
 - to know the number of client connected there is a array list take take cares of all the client connected 
+
 - once there is a connection the client is going to be added in the array list 
+
 - messages send over is broadcasted to all of the client in order for everyone to see the messages 
+
 - there is a loop that will always ask the client for new messages 
+
 - to change the nickname use commnand `/nick`
 - to exit the chatroom use command `/quit`, `/QUIT` or `/exit`
