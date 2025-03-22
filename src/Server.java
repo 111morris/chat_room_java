@@ -21,6 +21,11 @@ public class Server implements Runnable{
 
     }
   }
+
+  public ArrayList<ConnectionHandler> getConnections() {
+    return connections;
+  }
+
   class ConnectionHandler implements Runnable{
 
     private Socket client;

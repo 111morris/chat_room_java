@@ -34,4 +34,3 @@ the server will listen for connection (client) and handle each connection
 
 - to know the number of client connected there is a array list take take cares of all the client connected 
 - once there is a connection the client is going to be added in the array list 
--in order to display 
