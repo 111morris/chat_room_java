@@ -5,11 +5,11 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.Random;
 
-public class Server implements Runnable{
+public class Server implements Runnable {
 
   private ArrayList<ConnectionHandler> connections;
   private ServerSocket server;
@@ -22,28 +22,24 @@ public class Server implements Runnable{
   }
 
   @Override
-  public void run(){
-    try{
+  public void run() {
+    try {
       server = new ServerSocket(9999);
       pool = Executors.newCachedThreadPool();
-      while (!done){
+      while (!done) {
         Socket client = server.accept();
         ConnectionHandler handler = new ConnectionHandler(client);
         connections.add(handler);
         pool.execute(handler);
       }
-    } catch(IOException e){
+    } catch (IOException e) {
       shutdown();
     }
   }
 
-  public ArrayList<ConnectionHandler> getConnections() {
-    return connections;
-  }
-
   public void broadcast(String message) {
-    for(ConnectionHandler ch : connections) {
-      if(ch != null) {
+    for (ConnectionHandler ch : connections) {
+      if (ch != null) {
         ch.sendMessage(message);
       }
     }
@@ -52,25 +48,35 @@ public class Server implements Runnable{
   public void shutdown() {
     try {
       done = true;
-      if(!server.isClosed()){
+      pool.shutdown();
+      if (!server.isClosed()) {
         server.close();
       }
-      for (ConnectionHandler ch: connections) {
+      for (ConnectionHandler ch : connections) {
         ch.shutdown();
       }
-    } catch(IOException e) {
-      //ignore
+    } catch (IOException e) {
+      // ignore
     }
   }
 
-  class ConnectionHandler implements Runnable{
+  // Generate a random color
+  private String getRandomColor() {
+    String[] colors = {"\033[31m", "\033[32m", "\033[33m", "\033[34m", "\033[35m"};
+    Random rand = new Random();
+    return colors[rand.nextInt(colors.length)];
+  }
+
+  class ConnectionHandler implements Runnable {
     private Socket client;
     private BufferedReader in;
     private PrintWriter out;
     private String nickname;
-    //constructor
+    private String color;  // Store the color for this client
+
     public ConnectionHandler(Socket client) {
       this.client = client;
+      this.color = getRandomColor();  // Assign random color when a client connects
     }
 
     @Override
@@ -79,52 +85,53 @@ public class Server implements Runnable{
         out = new PrintWriter(client.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
-        out.println("Please input your nick name: ");
-
+        out.println("Please input your nickname: ");
         nickname = in.readLine();
-        System.out.println(nickname+" connected!");
+        System.out.println(nickname + " connected!");
 
-        broadcast(nickname + " joined the chat!");
+        // Broadcast that the user has joined
+        broadcast(color + nickname + " joined the chat!" + "\033[0m");
 
         String message;
-        while((message = in.readLine()) != null){
-          if(message.startsWith("/nick ")){
-            //TODO: handle nickname
-            String[] messageSplit = message.split(" ",2);
-            if (messageSplit.length == 2){
-              broadcast(nickname+" renamed themselves to "+messageSplit[1]);
-              System.out.println(nickname+" renamed themeselves to "+messageSplit[1]);
+        while ((message = in.readLine()) != null) {
+          if (message.startsWith("/quit") || message.startsWith("/EXIT")) {
+            broadcast(color + nickname + " left the chat!" + "\033[0m");
+            shutdown();
+          } else if (message.startsWith("/nick ")) {
+            String[] messageSplit = message.split(" ", 2);
+            if (messageSplit.length == 2) {
+              broadcast(color + nickname + " changed their name to " + messageSplit[1] + "\033[0m");
               nickname = messageSplit[1];
-              out.println("Successfully changed nickname to " + nickname );
+              out.println("Successfully changed nickname to " + nickname);
             } else {
               out.println("No nickname provided!");
             }
-          } else if (message.startsWith("/quit") || message.startsWith("/QUIT") || message.startsWith("/EXIT") || message.startsWith("/exit")){
-            broadcast(nickname + "left the chat!");
-            shutdown();
           } else {
-            broadcast(nickname+": "+message);
+            broadcast(color + nickname + ": " + message + "\033[0m");
           }
         }
-      } catch (IOException e){
+      } catch (IOException e) {
         shutdown();
       }
     }
-    public void sendMessage(String message){
+
+    public void sendMessage(String message) {
       out.println(message);
     }
+
     public void shutdown() {
-      try{
+      try {
         in.close();
         out.close();
-        if (!client.isClosed()){
+        if (!client.isClosed()) {
           client.close();
         }
-      }catch(IOException e) {
-        //ignore
+      } catch (IOException e) {
+        // ignore
       }
     }
   }
+
   public static void main(String[] args) {
     Server server = new Server();
     server.run();

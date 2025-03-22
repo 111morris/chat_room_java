@@ -43,3 +43,7 @@ ie. runnable >> task/job that can be executed by a thread and a thread >> is the
 
 - to change the nickname use commnand `/nick`
 - to exit the chatroom use command `/quit`, `/QUIT` or `/exit`
+
+>The color implementation 
+- each user is assigned a random color to enhance visibility which always displays the color consistently 
+- the server ensures that each client gets a unique color where each message get to be displayed in their specific color 
