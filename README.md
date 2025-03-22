@@ -25,10 +25,10 @@ things to consider
 
 
 [//]: # (coding)
--used runnable class in multithreading to define a task that can be executed by a thread
+- used runnable class in multithreading to define a task that can be executed by a thread
 ie. runnable >> task/job that can be executed by a thread and a thread >> is the actual object that represents a thread of execution which has the start() method to begin execution
 
-the server will listen for connection (client) and handle each connection 
+- the server will listen for connection (client) and handle each connection 
 
 - the serversocket listens for incoming client connections on a specific port and create a socket object to commuinicate witht the client
 
