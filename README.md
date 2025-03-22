@@ -18,7 +18,7 @@ and the client will be responsible for:
 
 
 things to consider 
-> User identification 
+> User identification
 > Exit handling 
 > Error handling 
 > Security
@@ -30,7 +30,11 @@ ie. runnable >> task/job that can be executed by a thread and a thread >> is the
 
 the server will listen for connection (client) and handle each connection 
 
--the serversocket listens for incoming client connections on a specific port and create a socket object to commuinicate witht the client
+- the serversocket listens for incoming client connections on a specific port and create a socket object to commuinicate witht the client
 
 - to know the number of client connected there is a array list take take cares of all the client connected 
 - once there is a connection the client is going to be added in the array list 
+- messages send over is broadcasted to all of the client in order for everyone to see the messages 
+- there is a loop that will always ask the client for new messages 
+- to change the nickname use commnand `/nick`
+- to exit the chatroom use command `/quit`, `/QUIT` or `/exit`
