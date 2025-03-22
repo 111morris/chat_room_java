@@ -99,7 +99,7 @@ public class Server implements Runnable{
             } else {
               out.println("No nickname provided!");
             }
-          } else if (message.startsWith("/quit") || message.startsWith("/QUIT")){
+          } else if (message.startsWith("/quit") || message.startsWith("/QUIT") || message.startsWith("/EXIT") || message.startsWith("/exit")){
             broadcast(nickname + "left the chat!");
             shutdown();
           } else {
