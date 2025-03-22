@@ -1,49 +1,118 @@
-A simple chat room TCP using pure java 
+# TCP Chat Room
 
-the tcp chat room has two components 
-    1. server =>{the server listens for incoming connections from clients and handles communication between them}
-    2. client =>{the client connects to the server and sends/receives messages}
+A simple TCP-based chat room built using pure Java. This chat room application consists of two main components:
 
+1. **Server** - Listens for incoming connections from clients and handles communication between them.
+2. **Client** - Connects to the server and sends/receives messages.
 
-so first the server will be responsible for 
-- [ ] listening for incoming client connections
-- [ ] the server is always running 
-- [ ] managing each connected client
-- [ ] relaying messages between clients 
+## Features
 
+- **Server-side:**
+    - Listens for incoming client connections.
+    - Handles multiple clients simultaneously.
+    - Broadcasts messages from one client to all connected clients.
+    - Allows clients to change their nickname.
+    - Assigns a unique color to each client to differentiate messages.
 
-and the client will be responsible for:
-- [ ] connecting to the server
-- [ ] sending messages to the server 
-- [ ] receiving messages from the server (broadcasted messages from other clients)
+- **Client-side:**
+    - Connects to the server.
+    - Sends messages to the server.
+    - Receives and displays broadcasted messages from other clients.
+    - Allows the user to change their nickname and exit the chat.
 
+## Commands
 
-things to consider 
-> User identification
-> Exit handling 
-> Error handling 
-> Security
+- `/nick <new_name>` - Change your nickname.
+- `/quit`, `/EXIT`, `/exit` - Exit the chat room.
 
+## Things to Consider
 
-[//]: # (coding)
-- used runnable class in multithreading to define a task that can be executed by a thread
-ie. runnable >> task/job that can be executed by a thread and a thread >> is the actual object that represents a thread of execution which has the start() method to begin execution
+- **User Identification:** Clients can change their nickname using the `/nick` command.
+- **Exit Handling:** Clients can leave the chat using `/quit` or similar commands.
+- **Error Handling:** Basic error handling is included for connection issues.
+- **Security:** While security is not a focus in this simple chat room, it’s important to consider proper validation and security in a real-world application.
 
-- the server will listen for connection (client) and handle each connection 
+## How it Works
 
-- the serversocket listens for incoming client connections on a specific port and create a socket object to commuinicate witht the client
+### Server
 
-- to know the number of client connected there is a array list take take cares of all the client connected 
+- The **Server** listens for incoming connections from clients using a `ServerSocket`.
+- When a client connects, the server creates a new thread to handle communication with that client.
+- The server broadcasts all incoming messages to every connected client.
+- Each client is assigned a unique color upon connection to enhance message visibility.
+- The server allows clients to change their nickname using the `/nick` command.
 
-- once there is a connection the client is going to be added in the array list 
+### Client
 
-- messages send over is broadcasted to all of the client in order for everyone to see the messages 
+- The **Client** connects to the server and waits for messages.
+- It can send messages to the server which will then be broadcasted to all clients.
+- The client listens for messages from the server and prints them in the terminal with the assigned color.
 
-- there is a loop that will always ask the client for new messages 
+## Example Flow
 
-- to change the nickname use commnand `/nick`
-- to exit the chatroom use command `/quit`, `/QUIT` or `/exit`
+1. The client starts and connects to the server.
+2. The client is asked to input a nickname.
+3. The client sends and receives messages in the chat room.
+4. The client can use the `/nick` command to change their nickname.
+5. The client can exit the chat room using `/quit`, `/EXIT`, or `/exit`.
 
->The color implementation 
-- each user is assigned a random color to enhance visibility which always displays the color consistently 
-- the server ensures that each client gets a unique color where each message get to be displayed in their specific color 
+## Color Implementation
+
+- Each user is assigned a random color to enhance message visibility and differentiate users' messages.
+- The color is applied consistently throughout the chat session.
+
+## To Run Locally
+
+1. **Start the Server**:
+    - Run the `Server` class. It will start listening on port `9999` for incoming connections.
+
+2. **Start the Client**:
+    - Run the `Client` class. It will attempt to connect to the server running on `127.0.0.1` (localhost).
+
+3. **Communication**:
+    - Once connected, clients can send and receive messages to/from the server.
+    - Clients can change their nickname with the `/nick` command and exit the chat using `/quit`.
+
+## Deployment (TODO)
+
+To make the application accessible over the internet, follow these steps:
+
+1. **Set Up a Public Server**:
+    - Deploy the server to a cloud provider or use port forwarding to expose the server to the internet.
+
+2. **Port Forwarding**:
+    - Set up port forwarding on your router to allow external connections to your server on port `9999`.
+
+3. **Update Client**:
+    - Change the client’s connection from `127.0.0.1` to the public IP address of your server.
+    - Update the connection line in the client code:
+      ```java
+      client = new Socket("your-public-server-ip", 9999);
+      ```
+
+## Code Explanation
+
+- **Multithreading**:
+    - The application uses Java’s `Runnable` interface for multithreading, allowing the server to handle multiple client connections concurrently.
+
+- **ServerSocket**:
+    - The server listens for incoming client connections on a specific port using a `ServerSocket`. Once a client connects, a new socket is created for communication.
+
+- **Client Management**:
+    - The server maintains a list of connected clients (`ArrayList<ConnectionHandler>`), ensuring all messages are broadcast to all connected clients.
+
+- **Message Broadcasting**:
+    - Messages from one client are broadcast to all connected clients so that everyone can see the conversation.
+
+## Future Improvements
+
+- **Security**:
+    - Implement proper encryption for message transmission (e.g., using SSL/TLS).
+    - Authenticate users before allowing them to join the chat room.
+
+- **Message Persistence**:
+    - Store chat messages in a database or file for future reference.
+
+- **User Interface**:
+    - Create a GUI for the client application for a more user-friendly experience.
+
