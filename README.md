@@ -22,3 +22,8 @@ things to consider
 > Exit handling 
 > Error handling 
 > Security
+
+
+[//]: # (coding)
+used runnable class in multithreading to define a task that can be executed by a thread
+ie. runnable >> task/job that can be executed by a thread and a thread >> is the actual object that represents a thread of execution which has the start() method to begin execution 
