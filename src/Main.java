@@ -4,6 +4,5 @@ public class Main {
 
     Dashboard dashboard = new Dashboard();
     new SplashScreen();
-    dashboard.show();
   }
 }

@@ -33,10 +33,13 @@ public class SplashScreen {
         frame.dispose();
 
         //pass values to server and client
+        Dashboard dashboard = new Dashboard(username);
+        dashboard.show();
         Server server = new Server(port);
         server.run();
       }
     });
+
 
     frame.setVisible(true);
   }

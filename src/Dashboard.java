@@ -4,7 +4,10 @@ import java.awt.*;
 
 public class Dashboard {
   private JFrame frame;
-  public  Dashboard(){
+  private String username;
+
+  public  Dashboard(String username){
+    this.username = username;
     frame = new JFrame("Chatroom Dashboard");
     frame.setSize(400,400);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
