@@ -13,6 +13,10 @@ public class Dashboard {
   private void initializeUI(){
     JPanel panel = new JPanel();
     panel.setLayout(new BorderLayout());
+
+    //chat area
+    JTextPane chatArea = new JTextPane();
+    panel.add(chatArea);
   }
 
   public void show() {
