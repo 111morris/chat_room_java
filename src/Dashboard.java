@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class Dashboard {
   private JFrame frame;
@@ -11,8 +12,9 @@ public class Dashboard {
   }
   private void initializeUI(){
     JPanel panel = new JPanel();
-    panel.setLayout(new BoxLayout());
+    panel.setLayout(new BorderLayout());
   }
+
   public void show() {
     frame.setVisible(true);
   }
