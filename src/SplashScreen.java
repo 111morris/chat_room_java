@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SplashScreen {
   private JFrame frame;
@@ -21,6 +23,17 @@ public class SplashScreen {
 
     JButton connectionButton = new JButton("Connect");
 
+    connectionButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String username = usernameField.getText();
+        int port = Integer.parseInt(serverPortField.getText());
+
+        //this will close the dashboard
+        frame.dispose();
+
+      }
+    });
 
     frame.setVisible(true);
   }
