@@ -3,6 +3,7 @@ public class Main {
     Server server = new Server();
 
     Dashboard dashboard = new Dashboard();
+    new SplashScreen();
     dashboard.show();
     server.run();
   }
