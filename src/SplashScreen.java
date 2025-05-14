@@ -12,6 +12,9 @@ public class SplashScreen {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setLayout(new GridLayout(4,2,10,10));
 
+    //adding the labels
+    JLabel userNameLabel = new JLabel("Username: ");
+    usernameField = new JTextField();
 
 
     frame.setVisible(true);
