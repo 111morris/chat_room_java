@@ -20,6 +20,11 @@ public class Dashboard {
     panel.add(new JScrollPane(chatArea), BorderLayout.CENTER);
 
     //this will be the input area
+    JPanel inputPanel = new JPanel();
+    inputPanel.setLayout(new BorderLayout());
+
+    JTextField inputField = new JTextField();
+
 
   }
 
