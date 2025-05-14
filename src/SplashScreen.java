@@ -16,6 +16,11 @@ public class SplashScreen {
     JLabel userNameLabel = new JLabel("Username: ");
     usernameField = new JTextField();
 
+    JLabel portLabel = new JLabel("Server port: ");
+    serverPortField = new JTextField();
+
+    JButton connectionButton = new JButton("Connect");
+
 
     frame.setVisible(true);
   }
