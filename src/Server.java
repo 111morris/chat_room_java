@@ -27,6 +27,7 @@ public class Server implements Runnable {
   @Override
   public void run() {
     try {
+      //serverSocket is 9999
       server = new ServerSocket(9999);
       pool = Executors.newCachedThreadPool();
       while (!done) {
