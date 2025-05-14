@@ -10,7 +10,8 @@ public class Dashboard {
     initializeUI();
   }
   private void initializeUI(){
-
+    JPanel panel = new JPanel();
+    panel.setLayout(new BoxLayout());
   }
   public void show() {
     frame.setVisible(true);
