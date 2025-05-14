@@ -15,8 +15,11 @@ public class Server implements Runnable {
   private ServerSocket server;
   private boolean done;
   private ExecutorService pool;
+  private int port;
 
-  public Server() {
+
+  public Server(int port) {
+    this.port = port;
     connections = new ArrayList<>();
     done = false;
   }
@@ -133,7 +136,7 @@ public class Server implements Runnable {
   }
 
   public static void main(String[] args) {
-    Server server = new Server();
-    server.run();
+
+
   }
 }

@@ -32,6 +32,9 @@ public class SplashScreen {
         //this will close the dashboard
         frame.dispose();
 
+        //pass values to server and client
+        Server server = new Server(port);
+        server.run();
       }
     });
 
