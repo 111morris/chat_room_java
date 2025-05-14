@@ -40,6 +40,14 @@ public class SplashScreen {
       }
     });
 
+    frame.add(userNameLabel);
+    frame.add(usernameField);
+    frame.add(portLabel);
+    frame.add(serverPortField);
+    frame.add(new JLabel()); //Empty cell
+    frame.add(connectionButton);
+
+    frame.setLocationRelativeTo(null);
 
     frame.setVisible(true);
   }
