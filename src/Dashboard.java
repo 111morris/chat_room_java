@@ -16,7 +16,11 @@ public class Dashboard {
 
     //chat area
     JTextPane chatArea = new JTextPane();
-    panel.add(chatArea);
+    chatArea.setEditable(false);
+    panel.add(new JScrollPane(chatArea), BorderLayout.CENTER);
+
+    //this will be the input area
+
   }
 
   public void show() {
