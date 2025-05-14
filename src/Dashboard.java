@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class Dashboard {
@@ -24,8 +25,13 @@ public class Dashboard {
     inputPanel.setLayout(new BorderLayout());
 
     JTextField inputField = new JTextField();
+    JButton sendButton = new JButton("Send");
 
+    inputPanel.add(inputField, BorderLayout.CENTER);
+    inputPanel.add(sendButton, BorderLayout.EAST);
 
+    panel.add(inputPanel, BorderLayout.SOUTH);
+    frame.add(panel);
   }
 
   public void show() {
