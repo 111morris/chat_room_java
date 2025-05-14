@@ -8,8 +8,8 @@ public class Dashboard {
 
   public  Dashboard(String username){
     this.username = username;
-    frame = new JFrame("Chatroom Dashboard");
-    frame.setSize(400,400);
+    frame = new JFrame("Chatroom - "+ username);
+    frame.setSize(400,600);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     initializeUI();
