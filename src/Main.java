@@ -3,6 +3,5 @@ public class Main {
     Server server = new Server();
     server.run();
 
-    Frame frame = new Frame();
   }
 }
