@@ -29,10 +29,13 @@ public class SplashScreen {
         String username = usernameField.getText();
         int port = Integer.parseInt(serverPortField.getText());
 
+        //passing values too server
+        Server server = new Server(port);
+        server.run();
         //this will close the dashboard
         frame.dispose();
 
-        //pass values to server and client
+        //pass values to server and ddclient
 
 
       }
