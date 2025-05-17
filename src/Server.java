@@ -99,19 +99,23 @@ public class Server implements Runnable {
             broadcast(nickname + " left the chat.", this);
             break;
           } else if (message.startsWith("/nick ")) {
-            String[] messageSplit = message.split(" ", 2);
-            if (messageSplit.length == 2) {
-              broadcast(color + nickname + " changed their name to " + messageSplit[1] + "\033[0m");
-              nickname = messageSplit[1];
-              out.println("Successfully changed nickname to " + nickname);
+            String[] split = message.split(" ", 2);
+
+            if (split.length == 2) {
+              String oldName = nickname;
+              nickname = split[1];
+              out.println("Nickname changed to " + nickname);
+              broadcast(oldName + " is now know as " + nickname, this);
             } else {
-              out.println("No nickname provided!");
+              out.println("Usage: /nick newname");
             }
           } else {
-            broadcast(color + nickname + ": " + message + "\033[0m");
+            broadcast(nickname + ": " + message, this);
           }
         }
       } catch (IOException e) {
+        System.out.println("Connection error with " + nickname);
+      } finally {
         shutdown();
       }
     }
@@ -122,11 +126,10 @@ public class Server implements Runnable {
 
     public void shutdown() {
       try {
-        in.close();
-        out.close();
-        if (!client.isClosed()) {
-          client.close();
-        }
+        if(in != null) in.close();
+        if(out != null) out.close();
+        if(client != null && !client.isClosed()) client.close();;
+        connections.remove(this);
       } catch (IOException e) {
         // ignore
       }
@@ -134,6 +137,6 @@ public class Server implements Runnable {
   }
 
   public static void main(String[] args) {
-
+    
   }
 }
