@@ -6,7 +6,7 @@ public class Dashboard {
   private JFrame frame;
   private String username;
 
-  public  Dashboard(String username){
+  public  Dashboard(String username, int port){
     this.username = username;
     frame = new JFrame("Chatroom - "+ username);
     frame.setSize(400,600);

@@ -29,12 +29,12 @@ public class SplashScreen {
         String username = usernameField.getText();
         int port = Integer.parseInt(serverPortField.getText());
 
-        //passing values too server
-        Server server = new Server(port);
-        server.run();
-
         //this will close the dashboard
         frame.dispose();
+
+       //passing username and port to dashboard
+        Dashboard dashboard = new Dashboard(username, port);
+        dashboard.show();
 
       }
     });
@@ -47,7 +47,11 @@ public class SplashScreen {
     frame.add(connectionButton);
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
+  }
+  public static void main(String[] args) {
+
   }
 
 }
