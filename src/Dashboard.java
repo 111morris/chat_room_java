@@ -52,10 +52,17 @@ public class Dashboard {
   }
   private void listenForMessage() {
     new Thread(()->{
-
+      try{
+        String msg;
+        while ((msg = client.getIn().readLine()) != null){
+          appendToChat(msg);
+        }
+      }catch (IOException e) {
+        appendToChat("Disconnected from the chat");
+      }
     }).start();
   }
-
+  
   public void show() {
     frame.setVisible(true);
   }
