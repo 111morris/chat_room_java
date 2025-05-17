@@ -20,6 +20,15 @@ public class Client {
   public BufferedReader getIn() {
     return in;
   }
+  public void close(){
+    try {
+      if(in != null) in.close();
+      if(out != null) out.close();
+    } catch (IOException e) {
+      //ignore
+      System.out.println("ignored");
+    }
+  }
 
 
   public static void main(String[] args) {
