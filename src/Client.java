@@ -24,14 +24,12 @@ public class Client {
     try {
       if(in != null) in.close();
       if(out != null) out.close();
+      if(socket != null && !socket.isClosed()) socket.close();
+
     } catch (IOException e) {
       //ignore
       System.out.println("ignored");
     }
   }
 
-
-  public static void main(String[] args) {
-
-  }
 }
