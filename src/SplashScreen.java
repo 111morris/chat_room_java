@@ -29,7 +29,13 @@ public class SplashScreen {
 
     JButton connectionButton = new JButton("Connect");
 
-    connectionButton.addActionListener(this::handleConnect);
+    connectionButton.addActionListener(e -> {
+      try {
+        handleConnect(e);
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
 
     frame.add(userNameLabel);
     frame.add(usernameField);
@@ -44,13 +50,29 @@ public class SplashScreen {
     frame.setResizable(false);
     frame.setVisible(true);
   }
-  private void handleConnect(ActionEvent e) {
+  private void handleConnect(ActionEvent e) throws IOException {
     String username = usernameField.getText().trim();
     String portText = serverPortField.getText().trim();
     //you will add host = ipaddressfiled
     if(username.isEmpty() || portText.isEmpty()) {
       JOptionPane.showMessageDialog(frame, "Please enter both username and port.");
       return;
+    }
+    try{
+      int port = Integer.parseInt(portText);
+      String host = "127.0.0.1";
+
+      Client client = new Client(host, port);
+      client.sendMessage(username);
+
+      //this will open dashboard and close splash
+      new Dashboard(username, client);
+      frame.dispose();
+
+    }catch (NumberFormatException ex) {
+      JOptionPane.showMessageDialog(frame, "Invalid port number. ");
+    } catch (IOException ex) {
+      JOptionPane.showMessageDialog(frame, "Unable to connect to the server.");
     }
   }
   public static void main(String[] args) {

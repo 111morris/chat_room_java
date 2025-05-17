@@ -5,23 +5,25 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.Random;
 
 public class Server implements Runnable {
 
-  private ArrayList<ConnectionHandler> connections;
+  private List<ConnectionHandler> connections;
   private ServerSocket server;
-  private boolean done;
   private ExecutorService pool;
+  private boolean isRunning;
   private int port;
 
 
   public Server(int port) {
     this.port = port;
-    connections = new ArrayList<>();
-    done = false;
+    this.connections = new CopyOnWriteArrayList<>();
+    this.isRunning = true;
   }
 
   @Override
@@ -30,7 +32,8 @@ public class Server implements Runnable {
       //serverSocket is 9999
       server = new ServerSocket(port);
       pool = Executors.newCachedThreadPool();
-      while (!done) {
+      System.out.println("Server started on port " + port);
+      while (isRunning) {
         Socket client = server.accept();
         ConnectionHandler handler = new ConnectionHandler(client);
         connections.add(handler);
@@ -42,46 +45,40 @@ public class Server implements Runnable {
     }
   }
 
-  public void broadcast(String message) {
+  public void broadcast(String message, ConnectionHandler sender) {
     for (ConnectionHandler ch : connections) {
-      if (ch != null) {
+      if (ch != sender) {
         ch.sendMessage(message);
       }
     }
   }
 
   public void shutdown() {
+    isRunning = false;
     try {
-      done = true;
-      pool.shutdown();
-      if (!server.isClosed()) {
+      if(server != null && !server.isClosed()){
         server.close();
       }
-      for (ConnectionHandler ch : connections) {
+      for(ConnectionHandler ch: connections) {
         ch.shutdown();
       }
+      if (pool != null && !pool.isShutdown()) {
+        pool.shutdown();
+      }
     } catch (IOException e) {
-      // ignore
+      e.printStackTrace();
     }
   }
 
-  // Generate a random color
-  private String getRandomColor() {
-    String[] colors = {"\033[31m", "\033[32m", "\033[33m", "\033[34m", "\033[35m"};
-    Random rand = new Random();
-    return colors[rand.nextInt(colors.length)];
-  }
 
-  class ConnectionHandler implements Runnable {
+  private class ConnectionHandler implements Runnable {
     private Socket client;
     private BufferedReader in;
     private PrintWriter out;
     private String nickname;
-    private String color;  // Store the color for this client
 
     public ConnectionHandler(Socket client) {
       this.client = client;
-      this.color = getRandomColor();  // Assign random color when a client connects
     }
 
     @Override
@@ -92,16 +89,15 @@ public class Server implements Runnable {
 
         out.println("Please input your nickname: ");
         nickname = in.readLine();
-        System.out.println(nickname + " connected!");
+        System.out.println(nickname + " Connected.");
+        broadcast(nickname + " joined the chat!", this);
 
-        // Broadcast that the user has joined
-        broadcast(color + nickname + " joined the chat!" + "\033[0m");
 
         String message;
         while ((message = in.readLine()) != null) {
-          if (message.startsWith("/quit") || message.startsWith("/EXIT")) {
-            broadcast(color + nickname + " left the chat!" + "\033[0m");
-            shutdown();
+          if (message.equalsIgnoreCase("/quit") || message.equalsIgnoreCase("/exit")) {
+            broadcast(nickname + " left the chat.", this);
+            break;
           } else if (message.startsWith("/nick ")) {
             String[] messageSplit = message.split(" ", 2);
             if (messageSplit.length == 2) {
