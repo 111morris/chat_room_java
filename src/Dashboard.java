@@ -24,6 +24,12 @@ public class Dashboard {
   private void initializeUI(){
     JPanel panel = new JPanel(new BorderLayout());
 
+    chatArea = new JTextPane();
+    chatArea.setEditable(false);
+    panel.add(new JScrollPane(chatArea), BorderLayout.CENTER);
+
+    
+
     panel.setLayout(new BorderLayout());
 
     //chat area
