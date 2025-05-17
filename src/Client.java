@@ -26,6 +26,10 @@ public class Client implements Runnable {
     //this.clientColor = COLORS[random.nextInt(COLORS.length)];
   }
 
+  public void sendMessage(String message) {
+    out.println(message);
+  }
+
   @Override
   public void run() {
     try {
