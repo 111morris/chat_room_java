@@ -5,6 +5,5 @@ public class Main {
       Server server = new Server(9999);
       server.run();
     }).start();
-    javax.swing.SwingUtilities.invokeLater(SplashScreen::new);
   }
 }

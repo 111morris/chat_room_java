@@ -59,10 +59,6 @@ public class SplashScreen {
       new Dashboard(username, client);
       frame.dispose();
 
-      //this will open dashboard and close splash
-      new Dashboard(username, client);
-      frame.dispose();
-
     }catch (NumberFormatException ex) {
       JOptionPane.showMessageDialog(frame, "Invalid port number. ");
     } catch (IOException ex) {

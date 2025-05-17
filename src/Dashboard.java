@@ -26,7 +26,7 @@ public class Dashboard {
 
     initializeUI();
     listenForMessage();
-//    show();
+    show();
   }
 
   private void initializeUI(){
