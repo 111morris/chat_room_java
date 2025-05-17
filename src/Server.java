@@ -137,6 +137,9 @@ public class Server implements Runnable {
   }
 
   public static void main(String[] args) {
-    
+    int port = 9999;
+    Server server = new Server(port);
+    Thread thread = new Thread(server);
+    thread.start();
   }
 }
