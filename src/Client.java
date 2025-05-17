@@ -20,10 +20,10 @@ public class Client implements Runnable {
   public Client(String host, int port) throws IOException {
     socket = new Socket(host, port);
     in = new BufferedReader(new InputStreamReader((socket.getInputStream())));
-
+    out = new PrintWriter(socket.getOutputStream(), true);
     // Randomly assign a color
-    Random random = new Random();
-    this.clientColor = COLORS[random.nextInt(COLORS.length)];
+    //Random random = new Random();
+    //this.clientColor = COLORS[random.nextInt(COLORS.length)];
   }
 
   @Override
