@@ -30,6 +30,12 @@ public class Client implements Runnable {
     out.println(message);
   }
 
+  public BufferedReader getIn() {
+    return in;
+  }
+
+
+
   @Override
   public void run() {
     try {
