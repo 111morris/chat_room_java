@@ -11,11 +11,16 @@ public class Client implements Runnable {
   private PrintWriter out;
   private boolean done;
   private String clientColor;
+  private Socket socket;
+
 
   // Random color generator for clients
   private static final String[] COLORS = {"\033[31m", "\033[32m", "\033[33m", "\033[34m", "\033[35m"};
 
-  public Client() {
+  public Client(String host, int port) throws IOException {
+    socket = new Socket(host, port);
+    in = new BufferedReader(new InputStreamReader((socket.getInputStream())));
+
     // Randomly assign a color
     Random random = new Random();
     this.clientColor = COLORS[random.nextInt(COLORS.length)];
