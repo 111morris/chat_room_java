@@ -41,6 +41,7 @@ public class Client implements Runnable {
       if(socket != null && !socket.isClosed()) socket.close();
     } catch(IOException e) {
       //ignore
+      System.out.println("ignored");
     }
   }
 
