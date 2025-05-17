@@ -1,5 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.io.IOException;
 
@@ -81,9 +84,25 @@ public class Dashboard {
       String message = msg.substring(colonIndex + 1).trim();
       Color userColor = colorManager.getColorForUser(user);
 
-      
-
+      appendStyled(user + ": ", userColor);
+      appendStyled(message + "\n", Color.BLACK);
+    } else {
+      // this will notify if someone has joined the chat that is "Morris joined the chat!"
+      appendStyled(msg + "\n", Color.GRAY);
     }
+  }
+
+  private void appendStyled(String text, Color color) {
+    SwingUtilities.invokeLater(()-> {
+      StyledDocument doc = chatArea.getStyledDocument();
+      Style style = chatArea.addStyle("ColorStyle", null);
+      StyleConstants.setForeground(style, color);
+      try{
+
+      } catch (Exception e) {
+        
+      }
+    });
   }
   private void appendToChat(String msg) {
     SwingUtilities.invokeLater(()->{
