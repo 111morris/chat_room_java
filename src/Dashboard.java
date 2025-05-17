@@ -38,6 +38,9 @@ public class Dashboard {
     inputPanel.add(inputField, BorderLayout.CENTER);
     inputPanel.add(sendButton, BorderLayout.EAST);
 
+    panel.add(inputPanel, BorderLayout.SOUTH);
+    frame.add(panel);
+
     panel.setLayout(new BorderLayout());
 
     //chat area
