@@ -41,7 +41,13 @@ public class Dashboard {
     panel.add(inputPanel, BorderLayout.SOUTH);
     frame.add(panel);
 
-   
+  }
+  private void sendMessage() {
+    String message = inputField.getText().trim();
+    if (!message.isEmpty()){
+      client.sendMessage(message);
+      inputField.setText("");
+    }
   }
 
   public void show() {
