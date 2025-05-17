@@ -20,6 +20,7 @@ public class Dashboard {
 
     initializeUI();
     listenForMessage();
+    show();
   }
 
   private void initializeUI(){
@@ -35,6 +36,7 @@ public class Dashboard {
 
 
     sendButton.addActionListener(e -> sendMessage());
+    inputField.addActionListener(e-> sendMessage());
 
     inputPanel.add(inputField, BorderLayout.CENTER);
     inputPanel.add(sendButton, BorderLayout.EAST);
@@ -46,6 +48,12 @@ public class Dashboard {
   private void sendMessage() {
     String message = inputField.getText().trim();
     if (!message.isEmpty()){
+      if(message.equalsIgnoreCase("/quit")){
+        client.sendMessage(message);
+        client.close();
+        frame.dispose();
+        return;
+      }
       client.sendMessage(message);
       inputField.setText("");
     }
