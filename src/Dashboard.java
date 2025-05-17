@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.io.IOException;
 
 public class Dashboard {
   private JFrame frame;
@@ -48,6 +49,16 @@ public class Dashboard {
       client.sendMessage(message);
       inputField.setText("");
     }
+  }
+  private void listenForMessage() {
+    new Thread(() -> {
+      try {
+        String msg;
+        while ((msg = client.getIn().readLine() != null))
+      } catch (IOException e) {
+        appendToChat("Disconnected from server.");
+      }
+    }).start();
   }
 
   public void show() {
