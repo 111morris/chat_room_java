@@ -28,7 +28,15 @@ public class Dashboard {
     chatArea.setEditable(false);
     panel.add(new JScrollPane(chatArea), BorderLayout.CENTER);
 
-    
+    JPanel inputPanel = new JPanel(new BorderLayout());
+    inputField = new JTextField();
+    JButton sendButton = new JButton("Send");
+
+
+    sendButton.addActionListener(e -> sendMessage());
+
+    inputPanel.add(inputField, BorderLayout.CENTER);
+    inputPanel.add(sendButton, BorderLayout.EAST);
 
     panel.setLayout(new BorderLayout());
 
