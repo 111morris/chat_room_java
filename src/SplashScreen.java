@@ -21,6 +21,21 @@ public class SplashScreen {
     JLabel portLabel = new JLabel("Server port: ");
     serverPortField = new JTextField();
 
+    JButton connectionButton = getJButton();
+
+    frame.add(userNameLabel);
+    frame.add(usernameField);
+    frame.add(portLabel);
+    frame.add(serverPortField);
+    frame.add(new JLabel()); //Empty cell
+    frame.add(connectionButton);
+
+    frame.setLocationRelativeTo(null);
+
+    frame.setVisible(true);
+  }
+
+  private JButton getJButton() {
     JButton connectionButton = new JButton("Connect");
 
     connectionButton.addActionListener(new ActionListener() {
@@ -39,17 +54,7 @@ public class SplashScreen {
         server.run();
       }
     });
-
-    frame.add(userNameLabel);
-    frame.add(usernameField);
-    frame.add(portLabel);
-    frame.add(serverPortField);
-    frame.add(new JLabel()); //Empty cell
-    frame.add(connectionButton);
-
-    frame.setLocationRelativeTo(null);
-
-    frame.setVisible(true);
+    return connectionButton;
   }
 
 }

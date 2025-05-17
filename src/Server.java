@@ -28,7 +28,7 @@ public class Server implements Runnable {
   public void run() {
     try {
       //serverSocket is 9999
-      server = new ServerSocket(9999);
+      server = new ServerSocket(port);
       pool = Executors.newCachedThreadPool();
       while (!done) {
         Socket client = server.accept();
