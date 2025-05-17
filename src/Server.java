@@ -105,7 +105,7 @@ public class Server implements Runnable {
               String oldName = nickname;
               nickname = split[1];
               out.println("Nickname changed to " + nickname);
-              broadcast(oldName + " is now know as " + nickname, this);
+              broadcast(oldName + " is now known as " + nickname, this);
             } else {
               out.println("Usage: /nick newname");
             }

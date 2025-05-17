@@ -26,7 +26,7 @@ public class Dashboard {
 
     initializeUI();
     listenForMessage();
-    show();
+//    show();
   }
 
   private void initializeUI(){
@@ -56,6 +56,7 @@ public class Dashboard {
     if (!message.isEmpty()){
       if(message.equalsIgnoreCase("/quit")){
         client.sendMessage(message);
+        appendStyled("You have left the chat. \n", Color.GRAY);
         client.close();
         frame.dispose();
         return;

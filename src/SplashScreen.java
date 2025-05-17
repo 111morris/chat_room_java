@@ -8,8 +8,7 @@ public class SplashScreen {
   private JFrame frame;
   private JTextField usernameField;
   private JTextField serverPortField;
-
-  // you should add ip address input
+  private JTextField ipAddressField;
 
   public SplashScreen(){
     frame = new JFrame("Chatroom Setup");
@@ -25,45 +24,40 @@ public class SplashScreen {
     JLabel portLabel = new JLabel("Server port: ");
     serverPortField = new JTextField();
 
-    //add userver ip input
+    JLabel ipLabel = new JLabel("Server IP: ");
+    ipAddressField = new JTextField("127.0.0.1");
 
     JButton connectionButton = new JButton("Connect");
+    connectionButton.addActionListener(this::handleConnect);
 
-    connectionButton.addActionListener(e -> {
-      try {
-        handleConnect(e);
-      } catch (IOException ex) {
-        throw new RuntimeException(ex);
-      }
-    });
 
     frame.add(userNameLabel);
     frame.add(usernameField);
     frame.add(portLabel);
     frame.add(serverPortField);
-    // you will add iplabel and ipaddressfield
-
-    frame.add(new JLabel()); //Empty cell
+    frame.add(ipAddressField);
+    frame.add(new JLabel());
     frame.add(connectionButton);
-
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
     frame.setVisible(true);
   }
-  private void handleConnect(ActionEvent e) throws IOException {
+  private void handleConnect(ActionEvent e) {
     String username = usernameField.getText().trim();
     String portText = serverPortField.getText().trim();
-    //you will add host = ipaddressfiled
-    if(username.isEmpty() || portText.isEmpty()) {
-      JOptionPane.showMessageDialog(frame, "Please enter both username and port.");
+    String host = ipAddressField.getText().trim();
+
+    if(username.isEmpty() || portText.isEmpty() || host.isEmpty()) {
+      JOptionPane.showMessageDialog(frame, "Please fill in all fields.");
       return;
     }
     try{
       int port = Integer.parseInt(portText);
-      String host = "127.0.0.1";
-
       Client client = new Client(host, port);
       client.sendMessage(username);
+
+      new Dashboard(username, client);
+      frame.dispose();
 
       //this will open dashboard and close splash
       new Dashboard(username, client);
@@ -75,8 +69,4 @@ public class SplashScreen {
       JOptionPane.showMessageDialog(frame, "Unable to connect to the server.");
     }
   }
-  public static void main(String[] args) {
-
-  }
-
 }
