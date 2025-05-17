@@ -14,6 +14,12 @@ public class Client {
     in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     out = new PrintWriter(socket.getOutputStream(), true);
   }
+  public void sendMessage(String message) {
+    out.println(message);
+  }
+  public BufferedReader getIn() {
+    return in;
+  }
 
 
   public static void main(String[] args) {
