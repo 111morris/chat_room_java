@@ -14,6 +14,7 @@ public class Dashboard {
   private JTextField inputField;
   private Client client;
   private final UserColorManager colorManager = new UserColorManager();
+  private JPanel messagePanel;
 
 
   public  Dashboard(String username, Client client){
@@ -30,11 +31,13 @@ public class Dashboard {
   }
 
   private void initializeUI(){
-    JPanel panel = new JPanel(new BorderLayout());
+    messagePanel = new JPanel();
+    messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
+    messagePanel.setBackground(Color.WHITE);
 
-    chatArea = new JTextPane();
-    chatArea.setEditable(false);
-    panel.add(new JScrollPane(chatArea), BorderLayout.CENTER);
+    JScrollPane scrollPane = new JScrollPane(messagePanel);
+    scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+    panel.add(ScrollPane, BorderLayout.CENTER);
 
     JPanel inputPanel = new JPanel(new BorderLayout());
     inputField = new JTextField();
@@ -76,6 +79,31 @@ public class Dashboard {
         appendStyled("Disconnected from the chat.", Color.GRAY);
       }
     }).start();
+  }
+
+  private void addMessageBubble(String message, Color color, boolean isSender){
+    JPanel bubble = new JPanel();
+    bubble.setLayout(new BorderLayout());
+    bubble.setBackground(color);
+    bubble.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
+
+    JLabel msgLabel = new JLabel("<html><p style='width:200px;'>" + message + "</p></html>");
+    msgLabel.setForeground(color.WHITE);
+
+    bubble.add(msgLabel, BorderLayout.CENTER);
+    bubble.setMaximumSize(new Dimension(300, Integer.MAX_VALUE));
+
+    JPanel wrapper = new JPanel(new BorderLayout());
+    wrapper.setOpaque(false);
+    if(isSender) {
+      wrapper.add(bubble, BorderLayout.EAST);
+    }else {
+      wrapper.add(bubble, BorderLayout.WEST);
+    }
+    messagePanel.add(wrapper);
+    messagePanel.revalidate();
+    messagePanel.repaint();
+    
   }
 
   private void processAndAppendMessage(String msg) {
