@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -98,9 +99,10 @@ public class Dashboard {
       Style style = chatArea.addStyle("ColorStyle", null);
       StyleConstants.setForeground(style, color);
       try{
-
-      } catch (Exception e) {
-        
+        doc.insertString(doc.getLength(), text, style);
+        chatArea.setCaretPosition(doc.getLength());
+      } catch (BadLocationException e) {
+       e.printStackTrace();
       }
     });
   }
