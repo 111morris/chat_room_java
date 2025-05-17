@@ -64,7 +64,9 @@ public class Dashboard {
   }
 
   private void appendToChat(String msg) {
-    
+    SwingUtilities.invokeLater(()->{
+      chatArea.setText(chatArea.getText()+ msg + "\n");
+    });
   }
   public void show() {
     frame.setVisible(true);
