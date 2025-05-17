@@ -34,8 +34,7 @@ public class SplashScreen {
 
         //pass values to server and client
 
-        Server server = new Server(port);
-        server.run();
+
       }
     });
 
