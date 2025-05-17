@@ -34,7 +34,15 @@ public class Client implements Runnable {
     return in;
   }
 
-
+  public void close() {
+    try{
+      if(in != null) in.close();
+      if(out != null) out.close();
+      if(socket != null && !socket.isClosed()) socket.close();
+    } catch(IOException e) {
+      //ignore
+    }
+  }
 
   @Override
   public void run() {
