@@ -28,18 +28,30 @@ public class SplashScreen {
     //add userver ip input
 
     JButton connectionButton = new JButton("Connect");
-    
+
+    connectionButton.addActionListener(this::handleConnect);
 
     frame.add(userNameLabel);
     frame.add(usernameField);
     frame.add(portLabel);
     frame.add(serverPortField);
+    // you will add iplabel and ipaddressfield
+
     frame.add(new JLabel()); //Empty cell
     frame.add(connectionButton);
+
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
+  }
+  private void handleConnect(ActionEvent e) {
+    String username = usernameField.getText().trim();
+    String portText = serverPortField.getText().trim();
+    //you will add host = ipaddressfiled
+    if(username.isEmpty() || portText.isEmpty()) {
+      JOptionPane.showMessageDialog(frame, "Please enter both username and port.");
+      return;
+    }
   }
   public static void main(String[] args) {
 
