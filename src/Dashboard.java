@@ -12,14 +12,18 @@ public class Dashboard {
   public  Dashboard(String username, Client client){
     this.username = username;
     this.client = client;
+
     frame = new JFrame("Chatroom - "+ username);
     frame.setSize(400,600);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     initializeUI();
+    listenForMessage();
   }
+
   private void initializeUI(){
-    JPanel panel = new JPanel();
+    JPanel panel = new JPanel(new BorderLayout());
+
     panel.setLayout(new BorderLayout());
 
     //chat area
