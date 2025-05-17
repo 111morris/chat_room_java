@@ -51,7 +51,9 @@ public class Dashboard {
     }
   }
   private void listenForMessage() {
-  
+    new Thread(()->{
+
+    }).start();
   }
 
   public void show() {
