@@ -1,6 +1,5 @@
 public class Main {
   public static void main(String[] args) {
-
-    new SplashScreen();
+    javax.swing.SwingUtilities.invokeLater(SplashScreen::new);
   }
 }
