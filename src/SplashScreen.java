@@ -32,11 +32,9 @@ public class SplashScreen {
         //passing values too server
         Server server = new Server(port);
         server.run();
+
         //this will close the dashboard
         frame.dispose();
-
-        //pass values to server and ddclient
-
 
       }
     });
@@ -47,9 +45,8 @@ public class SplashScreen {
     frame.add(serverPortField);
     frame.add(new JLabel()); //Empty cell
     frame.add(connectionButton);
-
     frame.setLocationRelativeTo(null);
-
+    frame.setResizable(false);
     frame.setVisible(true);
   }
 
