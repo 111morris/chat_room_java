@@ -9,6 +9,8 @@ public class Dashboard {
   private JTextPane chatArea;
   private JTextField inputField;
   private Client client;
+  private final UserColorManager colorManager = new UserColorManager();
+
 
   public  Dashboard(String username, Client client){
     this.username = username;
@@ -63,14 +65,26 @@ public class Dashboard {
       try{
         String msg;
         while ((msg = client.getIn().readLine()) != null){
-          appendToChat(msg);
+          processAndAppendMessage(msg);
         }
       }catch (IOException e) {
-        appendToChat("Disconnected from the chat");
+        appendStyled("Disconnected from the chat.", Color.GRAY);
       }
     }).start();
   }
 
+  private void processAndAppendMessage(String msg) {
+    //the format is "Morris: Hello there!"
+    if(msg.contains(":")){
+      int colonIndex = msg.indexOf(":");
+      String user = msg.substring(0, colonIndex).trim();
+      String message = msg.substring(colonIndex + 1).trim();
+      Color userColor = colorManager.getColorForUser(user);
+
+      
+
+    }
+  }
   private void appendToChat(String msg) {
     SwingUtilities.invokeLater(()->{
       chatArea.setText(chatArea.getText()+ msg + "\n");
