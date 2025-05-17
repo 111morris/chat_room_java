@@ -5,9 +5,13 @@ import java.awt.*;
 public class Dashboard {
   private JFrame frame;
   private String username;
+  private JTextPane chatArea;
+  private JTextField inputField;
+  private Client client;
 
-  public  Dashboard(String username, int port){
+  public  Dashboard(String username, Client client){
     this.username = username;
+    this.client = client;
     frame = new JFrame("Chatroom - "+ username);
     frame.setSize(400,600);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

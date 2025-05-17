@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class SplashScreen {
   private JFrame frame;
@@ -33,8 +34,14 @@ public class SplashScreen {
         frame.dispose();
 
        //passing username and port to dashboard
-        Dashboard dashboard = new Dashboard(username, port);
-        dashboard.show();
+        try{
+          Client client = new Client("127.0.0.1", port);
+          client.sendMessage(username);
+          Dashboard dashboard = new Dashboard(username, client);
+          dashboard.show();
+        } catch (IOException ex) {
+          JOptionPane.showMessageDialog(frame, "Unable to connect to server.");
+        }
 
       }
     });
