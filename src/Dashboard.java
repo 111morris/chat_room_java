@@ -51,14 +51,7 @@ public class Dashboard {
     }
   }
   private void listenForMessage() {
-    new Thread(() -> {
-      try {
-        String msg;
-        while ((msg = client.getIn().readLine() != null))
-      } catch (IOException e) {
-        appendToChat("Disconnected from server.");
-      }
-    }).start();
+  
   }
 
   public void show() {
