@@ -62,7 +62,10 @@ public class Dashboard {
       }
     }).start();
   }
-  
+
+  private void appendToChat(String msg) {
+    
+  }
   public void show() {
     frame.setVisible(true);
   }
