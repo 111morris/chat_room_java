@@ -39,7 +39,7 @@ public class Dashboard {
     messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
     messagePanel.setBackground(Color.WHITE);
 
-    JScrollPane scrollPane = new JScrollPane(messagePanel);
+    scrollPane = new JScrollPane(messagePanel);
     scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     panel.add(scrollPane, BorderLayout.CENTER);
 
@@ -136,7 +136,8 @@ public class Dashboard {
         messagePanel.repaint();
 
         //scroll to bottom
-        
+        JScrollBar vertical = scrollPane.getVerticalScrollBar();
+        vertical.setValue(vertical.getMaximum());
       }
     );
   }
