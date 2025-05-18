@@ -136,9 +136,7 @@ public class Dashboard {
         messagePanel.repaint();
 
         //scroll to bottom
-        scrollPane = new JScrollPane(messagePanel);
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        panel.add(scrollPane, BorderLayout.CENTER);
+        
       }
     );
   }
