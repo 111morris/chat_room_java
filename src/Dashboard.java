@@ -94,6 +94,8 @@ public class Dashboard {
     if(msg.contains(":")){
       int colonIndex = msg.indexOf(":");
       String sender = msg.substring(0, colonIndex).trim();
+      String content = msg.substring(colonIndex + 1).trim();
+      
       String user = msg.substring(0, colonIndex).trim();
       String message = msg.substring(colonIndex + 1).trim();
       Color userColor = colorManager.getColorForUser(user);
