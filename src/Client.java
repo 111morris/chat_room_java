@@ -11,11 +11,19 @@ public class Client {
 
   public Client(String host, int port) throws IOException{
     socket = new Socket(host, port);
-    in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     out = new PrintWriter(socket.getOutputStream(), true);
+    in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
   }
+
+  /**
+   * Sends a message to the server
+   * the first message send from the client (in SplashScreen) should be the nickname.
+   * @param message
+   */
   public void sendMessage(String message) {
-    out.println(message);
+    if(out !=null){
+      
+    }
   }
   public BufferedReader getIn() {
     return in;
