@@ -22,7 +22,7 @@ public class Client {
    */
   public void sendMessage(String message) {
     if(out !=null){
-      
+      out.println(message);
     }
   }
   public BufferedReader getIn() {
@@ -30,18 +30,16 @@ public class Client {
   }
   public void close(){
     try {
-      if(in != null) in.close();
       if(out != null) out.close();
+      if(in != null) in.close();
       if(socket != null && !socket.isClosed()) socket.close();
-
     } catch (IOException e) {
-      //ignore
-      System.out.println("ignored");
+      System.err.println("Error closing client connection: " + e.getMessage());
     }
   }
 
-  public static void main(String[] args) {
-    javax.swing.SwingUtilities.invokeLater(SplashScreen::new);
-  }
+//  public static void main(String[] args) {
+//    javax.swing.SwingUtilities.invokeLater(SplashScreen::new);
+//  }
 
 }
