@@ -95,11 +95,11 @@ public class Dashboard {
       int colonIndex = msg.indexOf(":");
       String sender = msg.substring(0, colonIndex).trim();
       String content = msg.substring(colonIndex + 1).trim();
-      
+      Color userColor = colorManager.getColorForUser(sender);
+      boolean isSender = sender.equalsIgnoreCase(username);
+
       String user = msg.substring(0, colonIndex).trim();
       String message = msg.substring(colonIndex + 1).trim();
-      Color userColor = colorManager.getColorForUser(user);
-      boolean isSender = user.equalsIgnoreCase(username);
       addMessageBubble(user + ": " + message, userColor, isSender);
 //      appendStyled(user + ": ", userColor);
 //      appendStyled(message + "\n", Color.BLACK);
