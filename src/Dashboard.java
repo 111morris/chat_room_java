@@ -93,6 +93,7 @@ public class Dashboard {
     //the format is "Morris: Hello there!"
     if(msg.contains(":")){
       int colonIndex = msg.indexOf(":");
+      String sender = msg.substring(0, colonIndex).trim();
       String user = msg.substring(0, colonIndex).trim();
       String message = msg.substring(colonIndex + 1).trim();
       Color userColor = colorManager.getColorForUser(user);
@@ -115,7 +116,7 @@ public class Dashboard {
         bubble.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
 
         JLabel msgLabel = new JLabel("<html><p style='width:200px;'>" + message + "</p></html>");
-        msgLabel.setForeground(color.WHITE);
+        msgLabel.setForeground(Color.WHITE);
 
         bubble.add(msgLabel, BorderLayout.CENTER);
         bubble.setMaximumSize(new Dimension(300, Integer.MAX_VALUE));
@@ -131,9 +132,14 @@ public class Dashboard {
         messagePanel.revalidate();
         messagePanel.repaint();
 
+        //scroll to bottom
+        JScrollPane scrollPane = (JScrollPane) messagePanel.getParent().getParent();
+        JScrollBar vertical = scrollPane.getVerticalScrollBar();
+        vertical.setValue(vertical.getMaximum());
       }
     );
   }
+  /*
   private void appendStyled(String text, Color color) {
     SwingUtilities.invokeLater(()-> {
       StyledDocument doc = chatArea.getStyledDocument();
@@ -146,7 +152,8 @@ public class Dashboard {
        e.printStackTrace();
       }
     });
-  }
+  }*/
+
   /*
   private void appendToChat(String msg) {
     SwingUtilities.invokeLater(()->{

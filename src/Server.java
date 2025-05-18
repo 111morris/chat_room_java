@@ -87,8 +87,8 @@ public class Server implements Runnable {
         out = new PrintWriter(client.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
-        out.println("Please input your nickname: ");
-        nickname = in.readLine();
+        //out.println("Please input your nickname: ");
+        //nickname = in.readLine();
         System.out.println(nickname + " Connected.");
         broadcast(nickname + " joined the chat!", this);
 
