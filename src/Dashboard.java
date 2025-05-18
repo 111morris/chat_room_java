@@ -15,6 +15,7 @@ public class Dashboard {
   private Client client;
   private final UserColorManager colorManager = new UserColorManager();
   private JPanel messagePanel;
+  private JScrollPane scrollPane;
 
 
   public  Dashboard(String username, Client client){
