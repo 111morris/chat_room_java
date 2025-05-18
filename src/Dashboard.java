@@ -136,8 +136,6 @@ public class Dashboard {
         messagePanel.repaint();
 
         //scroll to bottom
-        JScrollBar vertical = ((JScrollBar) messagePanel.getParent().getParent()).getVerticalScrollBar();
-        vertical.setValue(vertical.getMaximum());
       }
     );
   }
