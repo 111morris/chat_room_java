@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.text.Style;
 import java.awt.*;
 import java.io.IOException;
 
@@ -12,7 +11,6 @@ public class Dashboard {
   private final UserColorManager colorManager = new UserColorManager();
   private JPanel messagePanel;
   private JScrollPane scrollPane;
-
 
   public  Dashboard(String username, Client client){
     this.username = username;
