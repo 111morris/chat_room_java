@@ -114,10 +114,10 @@ public class Dashboard {
       String message = trimmedMsg.substring(colonIndex + 1).trim();
       Color userColor = colorManager.getColorForUser(user);
       boolean isSender = user.equalsIgnoreCase(username);
+      addMessageBubble(user + ": " + message, userColor, isSender);
     } else {
-      // this will notify if someone has joined the chat that is "Morris joined the chat!"
-//      appendStyled(msg + "\n", Color.GRAY);
-      addMessageBubble(msg, Color.GRAY, false);
+      // this is the unknown format, treat as notification
+      addMessageBubble(trimmedMsg, Color.GRAY, false);
     }
   }
 
@@ -146,7 +146,8 @@ public class Dashboard {
         messagePanel.repaint();
 
         //scroll to bottom
-        JScrollBar vertical = scrollPane.getVerticalScrollBar();
+        JScrollPane scrollPane1 = (JScrollPane) messagePanel.getParent().getParent();
+        JScrollBar vertical = scrollPane1.getVerticalScrollBar();
         vertical.setValue(vertical.getMaximum());
       }
     );
