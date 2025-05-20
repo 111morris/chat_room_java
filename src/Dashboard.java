@@ -97,6 +97,16 @@ public class Dashboard {
      *
      */
     //the format is "Morris: Hello there!"
+    String trimmedMsg = msg.trim();
+
+   //this will check for notification with specific phrasess
+    if(trimmedMsg.endsWith() ||
+        trimmedMsg.endsWith(" left the chat.") ||
+        trimmedMsg.contains(" is now known as ")) {
+
+    }
+
+
     if(msg.contains(":")){
       int colonIndex = msg.indexOf(":");
       String sender = msg.substring(0, colonIndex).trim();
