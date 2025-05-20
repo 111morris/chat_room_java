@@ -1,6 +1,5 @@
 import javax.swing.*;
 import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
 import java.awt.*;
 import java.io.IOException;
 
