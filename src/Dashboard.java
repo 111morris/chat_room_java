@@ -107,19 +107,13 @@ public class Dashboard {
       return;
     }
 
-
-    if(msg.contains(":")){
-      int colonIndex = msg.indexOf(":");
-      String sender = msg.substring(0, colonIndex).trim();
-      String content = msg.substring(colonIndex + 1).trim();
-      Color userColor = colorManager.getColorForUser(sender);
-      boolean isSender = sender.equalsIgnoreCase(username);
-      addMessageBubble(sender + ": " + content, userColor, isSender);
-
-//      String user = msg.substring(0, colonIndex).trim();
-//      String message = msg.substring(colonIndex + 1).trim();
-//      appendStyled(user + ": ", userColor);
-//      appendStyled(message + "\n", Color.BLACK);
+    // this will check if the message contains colon to parse user message
+    if(trimmedMsg.contains(":")){
+      int colonIndex = trimmedMsg.indexOf(":");
+      String user = trimmedMsg.substring(0, colonIndex).trim();
+      String message = trimmedMsg.substring(colonIndex + 1).trim();
+      Color userColor = colorManager.getColorForUser(user);
+      boolean isSender = user.equalsIgnoreCase(username);
     } else {
       // this will notify if someone has joined the chat that is "Morris joined the chat!"
 //      appendStyled(msg + "\n", Color.GRAY);
