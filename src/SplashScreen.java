@@ -55,6 +55,18 @@ public class SplashScreen {
     gbc.weightx = 1.0;
     formPanel.add(usernameField, gbc);
 
+    //server port input
+    serverPortField = new JTextField();
+    serverPortField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    addPlaceholder(serverPortField, "e.g. 9999");
+    serverPortField.setToolTipText("Enter the server port number");
+    gbc.gridx = 1;
+    gbc.gridy = 1;
+    gbc.weightx = 1.0;
+    formPanel.add(serverPortField, gbc);
+
+
+
     JLabel portLabel = new JLabel("Server port: ");
     serverPortField = new JTextField();
 
