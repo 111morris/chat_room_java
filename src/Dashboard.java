@@ -3,7 +3,6 @@ import javax.swing.border.Border;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.io.IOException;
 
