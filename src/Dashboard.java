@@ -1,15 +1,16 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.io.IOException;
 
 public class Dashboard {
   private JFrame frame;
   private String username;
-//  private JTextPane chatArea;
   private JTextField inputField;
   private Client client;
   private final UserColorManager colorManager = new UserColorManager();
   private JPanel messagePanel;
+
   private JScrollPane scrollPane;
 
   public  Dashboard(String username, Client client){
@@ -38,7 +39,6 @@ public class Dashboard {
     panel.add(scrollPane, BorderLayout.CENTER);
 
     //this is the input area
-
     JPanel inputPanel = new JPanel(new BorderLayout());
     inputField = new JTextField();
     JButton sendButton = new JButton("Send");
@@ -85,6 +85,17 @@ public class Dashboard {
 
 
   private void processAndAppendMessage(String msg) {
+
+    /**
+     * handling of different types of messages:
+     * 1. normal messages: format is "username: message"
+     * 2. Notification message about nickname change: "Oldname is now known as newname"
+     * 3. Join notification: "username joined the chat!"
+     * 4. leave notification: "username left the chat"
+     *
+     * the notification are shown in gray color, normal messages in user specific colors.\
+     *
+     */
     //the format is "Morris: Hello there!"
     if(msg.contains(":")){
       int colonIndex = msg.indexOf(":");
