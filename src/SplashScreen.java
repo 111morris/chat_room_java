@@ -65,6 +65,9 @@ public class SplashScreen {
     gbc.weightx = 1.0;
     formPanel.add(serverPortField, gbc);
 
+    mainPanel.add(formPanel, BorderLayout.CENTER);
+
+    //the connect button
 
 
     JLabel portLabel = new JLabel("Server port: ");
