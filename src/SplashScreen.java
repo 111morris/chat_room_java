@@ -24,6 +24,14 @@ public class SplashScreen {
     JPanel mainPanel = new JPanel(new BorderLayout());
     mainPanel.setBorder(new EmptyBorder(15, 20,15,20));
     mainPanel.setBackground(Color.WHITE);
+
+    // title label
+    JLabel titleLabel = new JLabel("Chatroom Setup", SwingConstants.CENTER);
+    titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
+    titleLabel.setBorder(new EmptyBorder(0,0,15,0));
+    mainPanel.add(titleLabel, BorderLayout.NORTH);
+
+
     //adding the labels
     //username input
     JLabel userNameLabel = new JLabel("Username: ");
