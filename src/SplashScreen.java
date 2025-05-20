@@ -31,11 +31,29 @@ public class SplashScreen {
     titleLabel.setBorder(new EmptyBorder(0,0,15,0));
     mainPanel.add(titleLabel, BorderLayout.NORTH);
 
+    // form panel using gridbaglayout for flexibility
+    JPanel formPanel = new JPanel(new GridLayout());
+    formPanel.setBackground(Color.WHITE);
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.fill = GridBagConstraints.HORIZONTAL;
+    gbc.insets = new Insets(8,5,8,5);
 
-    //adding the labels
-    //username input
-    JLabel userNameLabel = new JLabel("Username: ");
+    // username label
+    JLabel userNameLabel = new JLabel("Username:");
+    userNameLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    gbc.gridx = 0;
+    gbc.gridy = 0;
+    formPanel.add(userNameLabel, gbc);
+
+    // username input
     usernameField = new JTextField();
+    usernameField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    addPlacholder(usernameField, "Enter username");
+    usernameField.setToolTipText("Type your chat username here");
+    gbc.gridx = 1;
+    gbc.gridy = 0;
+    gbc.weightx = 1.0;
+    formPanel.add(usernameField, gbc);
 
     JLabel portLabel = new JLabel("Server port: ");
     serverPortField = new JTextField();
