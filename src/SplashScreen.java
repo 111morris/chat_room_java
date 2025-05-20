@@ -1,8 +1,11 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.io.IOException;
 
 public class SplashScreen {
@@ -87,25 +90,65 @@ public class SplashScreen {
       }
     });
 
-    JLabel portLabel = new JLabel("Server port: ");
-    serverPortField = new JTextField();
+    // panel for the button
+    JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    buttonPanel.setBackground(Color.WHITE);
+    buttonPanel.setBorder(new EmptyBorder(15,0,0,0));
+    buttonPanel.add(connectButton);
 
-    JLabel ipLabel = new JLabel("Server IP: ");
-    ipAddressField = new JTextField("127.0.0.1");
+    mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-    connectionButton.addActionListener(this::handleConnect);
-
-
-    frame.add(userNameLabel);
-    frame.add(usernameField);
-    frame.add(portLabel);
-    frame.add(serverPortField);
-    frame.add(ipAddressField);
-    frame.add(new JLabel());
-    frame.add(connectionButton);
-    frame.setLocationRelativeTo(null);
-    frame.setResizable(false);
+    frame.setContentPane(mainPanel);
     frame.setVisible(true);
+
+
+
+
+
+
+    //JLabel portLabel = new JLabel("Server port: ");
+    //serverPortField = new JTextField();
+
+    //JLabel ipLabel = new JLabel("Server IP: ");
+    //ipAddressField = new JTextField("127.0.0.1");
+
+    //connectionButton.addActionListener(this::handleConnect);
+
+    //frame.add(userNameLabel);
+    //frame.add(usernameField);
+    //frame.add(portLabel);
+    //frame.add(serverPortField);
+    //frame.add(ipAddressField);
+    //frame.add(new JLabel());
+    //frame.add(connectionButton);
+    //frame.setLocationRelativeTo(null);
+    //frame.setResizable(false);
+    //frame.setVisible(true);
+  }
+  private void addPlacholder(JTextField field, String placeholder) {
+    field.setForeground(placeholderColor);
+    field.setText(placeholder);
+    field.setFont(field.getFont().deriveFont(Font.ITALIC));
+    field.addFocusListener(new FocusAdapter() {
+      @Override
+      public void focusGained(FocusEvent e) {
+        if(field.getText().equals(placeholder)){
+          field.setText("");
+          field.setForeground(textColor);
+          field.setFont(field.getFont().deriveFont(Font.PLAIN));
+
+        }
+      }
+      @Override
+      public void focusLost(FocusEvent e) {
+        if(field.getText().isEmpty()) {
+          field.setForeground(placeholderColor);
+          field.setText(placeholder);
+          field.setFont(field.getFont().deriveFont(Font.ITALIC));
+
+        }
+      }
+    });
   }
   private void handleConnect(ActionEvent e) {
     String username = usernameField.getText().trim();
