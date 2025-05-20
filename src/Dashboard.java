@@ -103,7 +103,8 @@ public class Dashboard {
     if(trimmedMsg.endsWith() ||
         trimmedMsg.endsWith(" left the chat.") ||
         trimmedMsg.contains(" is now known as ")) {
-
+      addMessageBubble(trimmedMsg, Color.GRAY, false);
+      return;
     }
 
 
