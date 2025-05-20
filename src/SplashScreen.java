@@ -68,7 +68,14 @@ public class SplashScreen {
     mainPanel.add(formPanel, BorderLayout.CENTER);
 
     //the connect button
-
+    JButton connectButton = new JButton("Connect");
+    connectButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
+    connectButton.setBackground(new Color(33,150,243));
+    connectButton.setForeground(Color.WHITE);
+    connectButton.setFocusPainted(false);
+    connectButton.setBorder(BorderFactory.createEmptyBorder(8,20,8,20));
+    connectButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    connectButton.addActionListener(this::handleConnect);
 
     JLabel portLabel = new JLabel("Server port: ");
     serverPortField = new JTextField();
@@ -76,7 +83,6 @@ public class SplashScreen {
     JLabel ipLabel = new JLabel("Server IP: ");
     ipAddressField = new JTextField("127.0.0.1");
 
-    JButton connectionButton = new JButton("Connect");
     connectionButton.addActionListener(this::handleConnect);
 
 
