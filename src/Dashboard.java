@@ -100,7 +100,7 @@ public class Dashboard {
     String trimmedMsg = msg.trim();
 
    //this will check for notification with specific phrasess
-    if(trimmedMsg.endsWith() ||
+    if(trimmedMsg.endsWith(" joined the chat!") ||
         trimmedMsg.endsWith(" left the chat.") ||
         trimmedMsg.contains(" is now known as ")) {
       addMessageBubble(trimmedMsg, Color.GRAY, false);
