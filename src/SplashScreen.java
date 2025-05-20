@@ -150,12 +150,16 @@ public class SplashScreen {
       }
     });
   }
+
+
   private void handleConnect(ActionEvent e) {
     String username = usernameField.getText().trim();
     String portText = serverPortField.getText().trim();
     String host = ipAddressField.getText().trim();
 
-    if(username.isEmpty() || portText.isEmpty() || host.isEmpty()) {
+    if(username.isEmpty() || username.equals("Enter username") ||
+        portText.isEmpty() || portText.equals("e.g. 9999") ||
+        host.isEmpty() || host.equals("127.0.0.1")) {
       JOptionPane.showMessageDialog(frame, "Please fill in all fields.");
       return;
     }
