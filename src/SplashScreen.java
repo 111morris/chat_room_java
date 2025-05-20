@@ -77,6 +77,16 @@ public class SplashScreen {
     connectButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
     connectButton.addActionListener(this::handleConnect);
 
+    //adding the hover effect
+    connectButton.addMouseListener(new java.awt.event.MouseAdapter(){
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        connectButton.setBackground(new Color(30, 136,229));
+      }
+      public void  mouseExited(java.awt.event.MouseEvent evt) {
+        connectButton.setBackground(new Color(33,150, 243));
+      }
+    });
+
     JLabel portLabel = new JLabel("Server port: ");
     serverPortField = new JTextField();
 
