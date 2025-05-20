@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,12 +11,19 @@ public class SplashScreen {
   private JTextField serverPortField;
   private JTextField ipAddressField;
 
+  private final Color placeholderColor = Color.GRAY;
+  private final Color textColor = Color.BLACK;
+
   public SplashScreen(){
     frame = new JFrame("Chatroom Setup");
-    frame.setSize(300,200);
+    frame.setSize(350,220);
+    frame.setLocationRelativeTo(null);
+    frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setLayout(new GridLayout(4,2,10,10));
 
+    JPanel mainPanel = new JPanel(new BorderLayout());
+    mainPanel.setBorder(new EmptyBorder(15, 20,15,20));
+    mainPanel.setBackground(Color.WHITE);
     //adding the labels
     //username input
     JLabel userNameLabel = new JLabel("Username: ");
