@@ -16,7 +16,7 @@ public class SplashScreen {
 
   public SplashScreen(){
     frame = new JFrame("Chatroom Setup");
-    frame.setSize(320,230);
+    frame.setSize(340,250);
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -138,6 +138,10 @@ public class SplashScreen {
     formPanel.add(ipAddressField);
     formPanel.add(new JLabel()); // empty cell
     formPanel.add(connectButton);
+
+    mainPanel.add(formPanel, BorderLayout.CENTER);
+    frame.setContentPane(mainPanel);
+    frame.setVisible(true);
 
   }
   private void addPlacholder(JTextField field, String placeholder) {
