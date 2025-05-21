@@ -45,6 +45,13 @@ public class SplashScreen {
     addPlacholder(serverPortField, "e.g. 9999");
     serverPortField.setToolTipText("Enter the server port number");
 
+    //sever ip Label and input
+    JLabel ipLabel = new JLabel("Server IP: ");
+    ipLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    ipAddressField = new JTextField();
+    ipAddressField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    addPlacholder(ipAddressField, "127.0.0.1");
+    ipAddressField.setToolTipText("Enter the server IP address");
 
     //the connect button
     JButton connectButton = new JButton("Connect");
