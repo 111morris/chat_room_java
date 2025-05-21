@@ -26,11 +26,7 @@ public class SplashScreen {
     frame.setLayout(new GridLayout(4,2,10,10));
 
 
-    // title label
-    JLabel titleLabel = new JLabel("Chatroom Setup", SwingConstants.CENTER);
-    titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
-    titleLabel.setBorder(new EmptyBorder(0,0,15,0));
-    mainPanel.add(titleLabel, BorderLayout.NORTH);
+
 
     // form panel using gridbaglayout for flexibility
     JPanel formPanel = new JPanel(new GridLayout());
