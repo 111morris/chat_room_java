@@ -14,6 +14,18 @@ public class SplashScreen {
   private final Color placeholderColor = Color.GRAY;
   private final Color textColor = Color.BLACK;
 
+  public JTextField getUsernameField() {
+    return usernameField;
+  }
+
+  public JTextField getServerPortField() {
+    return serverPortField;
+  }
+
+  public JTextField getIpAddressField() {
+    return ipAddressField;
+  }
+
   public SplashScreen(){
     frame = new JFrame("Chatroom Setup");
     frame.setSize(340,250);
@@ -99,6 +111,7 @@ public class SplashScreen {
         connectButton.setBackground(new Color(33,150,243));
       }
     });
+
     connectButton.addActionListener(this::handleConnect);
 /*
     //adding the hover effect
@@ -142,7 +155,6 @@ public class SplashScreen {
     mainPanel.add(formPanel, BorderLayout.CENTER);
     frame.setContentPane(mainPanel);
     frame.setVisible(true);
-
   }
   private void addPlacholder(JTextField field, String placeholder) {
     field.setForeground(placeholderColor);
