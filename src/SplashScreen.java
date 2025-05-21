@@ -178,7 +178,7 @@ public class SplashScreen {
     // this will check if placeholder is still present or fields empty
     if(username.isEmpty() || username.equals("Enter username") ||
         portText.isEmpty() || portText.equals("e.g. 9999") ||
-        host.isEmpty() || host.equals("127.0.0.1")) {
+        host.isEmpty()) {
       JOptionPane.showMessageDialog(frame, "Please fill in all fields.");
       return;
     }
