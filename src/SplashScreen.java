@@ -31,9 +31,7 @@ public class SplashScreen {
     // username label
     JLabel userNameLabel = new JLabel("Username:");
     userNameLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    gbc.gridx = 0;
-    gbc.gridy = 0;
-    formPanel.add(userNameLabel, gbc);
+
 
     // username input
     usernameField = new JTextField();
