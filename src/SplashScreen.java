@@ -38,12 +38,8 @@ public class SplashScreen {
     usernameField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
     addPlacholder(usernameField, "Enter username");
     usernameField.setToolTipText("Type your chat username here");
-    gbc.gridx = 1;
-    gbc.gridy = 0;
-    gbc.weightx = 1.0;
-    formPanel.add(usernameField, gbc);
 
-    //server port input
+     //server port input
     serverPortField = new JTextField();
     serverPortField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
     addPlacholder(serverPortField, "e.g. 9999");
