@@ -25,13 +25,9 @@ public class SplashScreen {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setLayout(new GridLayout(4,2,10,10));
 
-
-
-
     // username label
-    JLabel userNameLabel = new JLabel("Username:");
+    JLabel userNameLabel = new JLabel("Username: ");
     userNameLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-
 
     // username input
     usernameField = new JTextField();
@@ -39,7 +35,11 @@ public class SplashScreen {
     addPlacholder(usernameField, "Enter username");
     usernameField.setToolTipText("Type your chat username here");
 
-     //server port input
+     //server port label and input
+    JLabel portLabel = new JLabel("Server port: ");
+    portLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    serverPortField = new JTextField();
+
     serverPortField = new JTextField();
     serverPortField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
     addPlacholder(serverPortField, "e.g. 9999");
