@@ -16,16 +16,31 @@ public class SplashScreen {
 
   public SplashScreen(){
     frame = new JFrame("Chatroom Setup");
-    frame.setSize(300,200);
+    frame.setSize(320,230);
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setLayout(new GridLayout(4,2,10,10));
+    //frame.setLayout(new GridLayout(4,2,10,10));
+
+    // main panel with padding
+    JPanel mainPanel = new JPanel(new BorderLayout());
+    mainPanel.setBorder(new EmptyBorder(15,20,15,20));
+    mainPanel.setBackground(Color.WHITE);
+
+    //title label
+    JLabel titleLabel = new JLabel("Chatroom Setup");
+    titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
+    titleLabel.setHorizontalAlignment(SwingConstants.LEFT);
+    titleLabel.setBorder(new EmptyBorder(0,0,15,0));
+    mainPanel.add(titleLabel, BorderLayout.NORTH);
+
+    //form panel
+    JPanel formPanel = new JPanel(new GridLayout(4,2,10,10));
+    formPanel.setBackground(Color.WHITE);
 
     // username label
     JLabel userNameLabel = new JLabel("Username: ");
     userNameLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-
     // username input
     usernameField = new JTextField();
     usernameField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -35,7 +50,6 @@ public class SplashScreen {
      //server port label and input
     JLabel portLabel = new JLabel("Server port: ");
     portLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    serverPortField = new JTextField();
 
     serverPortField = new JTextField();
     serverPortField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -142,12 +156,12 @@ public class SplashScreen {
     });
   }
 
-
   private void handleConnect(ActionEvent e) {
     String username = usernameField.getText().trim();
     String portText = serverPortField.getText().trim();
     String host = ipAddressField.getText().trim();
 
+    // this will check if placeholder is still present or fields empty
     if(username.isEmpty() || username.equals("Enter username") ||
         portText.isEmpty() || portText.equals("e.g. 9999") ||
         host.isEmpty() || host.equals("127.0.0.1")) {
