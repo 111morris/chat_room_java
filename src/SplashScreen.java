@@ -61,6 +61,21 @@ public class SplashScreen {
     connectButton.addMouseListener(new MouseListener() {
 
       @Override
+      public void mouseClicked(MouseEvent e) {
+
+      }
+
+      @Override
+      public void mousePressed(MouseEvent e) {
+
+      }
+
+      @Override
+      public void mouseReleased(MouseEvent e) {
+
+      }
+
+      @Override
       public void mouseEntered(MouseEvent e) {
         connectButton.setBackground(new Color(30,136,229));
       }
@@ -71,7 +86,7 @@ public class SplashScreen {
       }
     });
     connectButton.addActionListener(this::handleConnect);
-
+/*
     //adding the hover effect
     connectButton.addMouseListener(new java.awt.event.MouseAdapter(){
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -81,20 +96,9 @@ public class SplashScreen {
         connectButton.setBackground(new Color(33,150, 243));
       }
     });
-
-    // panel for the button
-    JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-    buttonPanel.setBackground(Color.WHITE);
-    buttonPanel.setBorder(new EmptyBorder(15,0,0,0));
-    buttonPanel.add(connectButton);
-
+    */
 
     frame.setVisible(true);
-
-
-
-
-
 
     //JLabel portLabel = new JLabel("Server port: ");
     //serverPortField = new JTextField();
