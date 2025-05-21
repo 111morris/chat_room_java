@@ -44,12 +44,7 @@ public class SplashScreen {
     serverPortField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
     addPlacholder(serverPortField, "e.g. 9999");
     serverPortField.setToolTipText("Enter the server port number");
-    gbc.gridx = 1;
-    gbc.gridy = 1;
-    gbc.weightx = 1.0;
-    formPanel.add(serverPortField, gbc);
 
-    mainPanel.add(formPanel, BorderLayout.CENTER);
 
     //the connect button
     JButton connectButton = new JButton("Connect");
