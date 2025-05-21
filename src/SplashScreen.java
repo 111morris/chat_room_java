@@ -98,8 +98,6 @@ public class SplashScreen {
     });
     */
 
-    frame.setVisible(true);
-
     //JLabel portLabel = new JLabel("Server port: ");
     //serverPortField = new JTextField();
 
@@ -108,16 +106,15 @@ public class SplashScreen {
 
     //connectionButton.addActionListener(this::handleConnect);
 
-    //frame.add(userNameLabel);
-    //frame.add(usernameField);
-    //frame.add(portLabel);
-    //frame.add(serverPortField);
-    //frame.add(ipAddressField);
-    //frame.add(new JLabel());
-    //frame.add(connectionButton);
-    //frame.setLocationRelativeTo(null);
-    //frame.setResizable(false);
-    //frame.setVisible(true);
+    frame.add(userNameLabel);
+    frame.add(usernameField);
+    frame.add(portLabel);
+    frame.add(serverPortField);
+    frame.add(ipLabel);
+    frame.add(ipAddressField);
+    frame.add(new JLabel());
+    frame.add(connectButton);
+    frame.setVisible(true);
   }
   private void addPlacholder(JTextField field, String placeholder) {
     field.setForeground(placeholderColor);
