@@ -19,14 +19,12 @@ public class SplashScreen {
 
   public SplashScreen(){
     frame = new JFrame("Chatroom Setup");
-    frame.setSize(350,220);
+    frame.setSize(300,200);
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setLayout(new GridLayout(4,2,10,10));
 
-    JPanel mainPanel = new JPanel(new BorderLayout());
-    mainPanel.setBorder(new EmptyBorder(15, 20,15,20));
-    mainPanel.setBackground(Color.WHITE);
 
     // title label
     JLabel titleLabel = new JLabel("Chatroom Setup", SwingConstants.CENTER);
@@ -61,7 +59,7 @@ public class SplashScreen {
     //server port input
     serverPortField = new JTextField();
     serverPortField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    addPlaceholder(serverPortField, "e.g. 9999");
+    addPlacholder(serverPortField, "e.g. 9999");
     serverPortField.setToolTipText("Enter the server port number");
     gbc.gridx = 1;
     gbc.gridy = 1;
@@ -176,5 +174,8 @@ public class SplashScreen {
     } catch (IOException ex) {
       JOptionPane.showMessageDialog(frame, "Unable to connect to the server.");
     }
+  }
+  public static void main(String[] args) {
+    SwingUtilities.invokeLater(SplashScreen::new);
   }
 }
