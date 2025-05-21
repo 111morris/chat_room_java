@@ -72,9 +72,7 @@ public class SplashScreen {
     buttonPanel.setBorder(new EmptyBorder(15,0,0,0));
     buttonPanel.add(connectButton);
 
-    mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-    frame.setContentPane(mainPanel);
     frame.setVisible(true);
 
 
