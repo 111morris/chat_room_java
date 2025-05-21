@@ -28,13 +28,6 @@ public class SplashScreen {
 
 
 
-    // form panel using gridbaglayout for flexibility
-    JPanel formPanel = new JPanel(new GridLayout());
-    formPanel.setBackground(Color.WHITE);
-    GridBagConstraints gbc = new GridBagConstraints();
-    gbc.fill = GridBagConstraints.HORIZONTAL;
-    gbc.insets = new Insets(8,5,8,5);
-
     // username label
     JLabel userNameLabel = new JLabel("Username:");
     userNameLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
