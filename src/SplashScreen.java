@@ -119,7 +119,7 @@ public class SplashScreen {
     //ipAddressField = new JTextField("127.0.0.1");
 
     //connectionButton.addActionListener(this::handleConnect);
-
+    /*
     frame.add(userNameLabel);
     frame.add(usernameField);
     frame.add(portLabel);
@@ -129,6 +129,16 @@ public class SplashScreen {
     frame.add(new JLabel());
     frame.add(connectButton);
     frame.setVisible(true);
+    */
+    formPanel.add(userNameLabel);
+    formPanel.add(usernameField);
+    formPanel.add(portLabel);
+    formPanel.add(serverPortField);
+    formPanel.add(ipLabel);
+    formPanel.add(ipAddressField);
+    formPanel.add(new JLabel()); // empty cell
+    formPanel.add(connectButton);
+
   }
   private void addPlacholder(JTextField field, String placeholder) {
     field.setForeground(placeholderColor);
