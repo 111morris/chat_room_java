@@ -2,10 +2,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import java.awt.event.*;
 import java.io.IOException;
 
 public class SplashScreen {
@@ -59,8 +56,20 @@ public class SplashScreen {
     connectButton.setBackground(new Color(33,150,243));
     connectButton.setForeground(Color.WHITE);
     connectButton.setFocusPainted(false);
-    connectButton.setBorder(BorderFactory.createEmptyBorder(8,20,8,20));
+//    connectButton.setBorder(BorderFactory.createEmptyBorder(8,20,8,20));
     connectButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    connectButton.addMouseListener(new MouseListener() {
+
+      @Override
+      public void mouseEntered(MouseEvent e) {
+        connectButton.setBackground(new Color(30,136,229));
+      }
+
+      @Override
+      public void mouseExited(MouseEvent e) {
+        connectButton.setBackground(new Color(33,150,243));
+      }
+    });
     connectButton.addActionListener(this::handleConnect);
 
     //adding the hover effect
