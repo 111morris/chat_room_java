@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
@@ -208,6 +207,8 @@ public class SplashScreen {
       JOptionPane.showMessageDialog(frame, "Unable to connect to the server.");
     }
   }
+
+
   public static void main(String[] args) {
     SwingUtilities.invokeLater(SplashScreen::new);
   }
