@@ -35,20 +35,13 @@ public class Dashboard extends JFrame {
     add(scrollPane1, BorderLayout.CENTER);
  }
 
-
   public void createInputArea(){
 
     messageField = new JTextField();
     sendButton = new JButton("Send");
-
     JPanel inputPanel = new JPanel(new BorderLayout());
     inputPanel.add(messageField, BorderLayout.CENTER);
     inputPanel.add(sendButton, BorderLayout.EAST);
-
-    add(inputPanel, BorderLayout.SOUTH);
-
-    sendButton.adActionListener(e -> sendMessage());
-    messageField.addActionListener(e -> sendMessage());
 
   }
   private void sendMessage() {
