@@ -9,6 +9,7 @@ public class Dashboard extends JFrame {
   private Client client;
   private final UserColorManager colorManager = new UserColorManager();
   private JPanel messagePanel;
+  private JTextArea chatArea;
 
   private JScrollPane scrollPane;
 
@@ -20,13 +21,20 @@ public class Dashboard extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
 
-    initializeChatArea();
+    createChatDisplayArea();
+    createInputArea();
     listenForMessage();
     show();
   }
 
-  private void initializeChatArea(){
+  private void createChatDisplayArea() {
     JPanel panel = new JPanel(new BorderLayout());
+
+    chatArea = new JTextArea();
+    chatArea.setEditable(false);
+    JScrollPane scrollPane1 = new JScrollPane(chatArea);
+    add(scrollPane1, BorderLayout.CENTER);
+
 
     //this is the message panel setup
     messagePanel = new JPanel();
@@ -36,6 +44,10 @@ public class Dashboard extends JFrame {
     scrollPane = new JScrollPane(messagePanel);
     scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     panel.add(scrollPane, BorderLayout.CENTER);
+  }
+
+
+  public void createInputArea(){
 
     //this is the input area
     JPanel inputPanel = new JPanel(new BorderLayout());
