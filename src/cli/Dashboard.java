@@ -21,6 +21,19 @@ public class Dashboard extends JFrame {
     JScrollPane scrollPane = new JScrollPane(chatArea);
     add(scrollPane, BorderLayout.CENTER);
 
-    //creating the input area
+    //creating the input area(text field +button)
+    JPanel inputPanel = new JPanel();
+    inputPanel.setLayout(new BorderLayout());
+
+    messageField = new JTextField();
+    sendButton = new JButton("Send");
+
+    inputPanel.add(messageField, BorderLayout.CENTER);
+    inputPanel.add(sendButton, BorderLayout.EAST);
+
+    add(inputPanel, BorderLayout.SOUTH);
+
+
+
   }
 }
