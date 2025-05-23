@@ -3,7 +3,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.io.IOException;
 
-public class Dashboard {
+public class Dashboard extends JFrame {
   private JFrame frame;
   private String username;
   private JTextField inputField;
@@ -13,13 +13,13 @@ public class Dashboard {
 
   private JScrollPane scrollPane;
 
-  public  Dashboard(String username, Client client){
+  public Dashboard(String username, Client client){
     this.username = username;
     this.client = client;
-
-    frame = new JFrame("Chatroom - "+ username);
-    frame.setSize(400,600);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setTitle("Chatroom - "+ username);
+    setSize(400,600);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLocationRelativeTo(null);
 
     initializeUI();
     listenForMessage();

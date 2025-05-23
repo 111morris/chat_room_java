@@ -2,38 +2,48 @@ package cli;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class Dashboard extends JFrame {
-  private JTextField chatArea;
+  private JTextArea chatArea;
   private JTextField messageField;
   private JButton sendButton;
 
   public Dashboard() {
-    setTitle("Java Chat Room");
-    setSize(400,600);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLocationRelativeTo(null);
+    setTitle("Chat Room");
+    setSize(400, 500);
+    setDefaultCloseOperation(EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
 
-    //create a chat display area
-    chatArea = new JTextField();
+    chatArea = new JTextArea();
     chatArea.setEditable(false);
     JScrollPane scrollPane = new JScrollPane(chatArea);
     add(scrollPane, BorderLayout.CENTER);
 
-    //creating the input area(text field +button)
-    JPanel inputPanel = new JPanel();
-    inputPanel.setLayout(new BorderLayout());
-
     messageField = new JTextField();
     sendButton = new JButton("Send");
 
+    JPanel inputPanel = new JPanel(new BorderLayout());
     inputPanel.add(messageField, BorderLayout.CENTER);
     inputPanel.add(sendButton, BorderLayout.EAST);
 
     add(inputPanel, BorderLayout.SOUTH);
 
+    sendButton.addActionListener(e -> sendMessage());
+    messageField.addActionListener(e -> sendMessage());
 
+    setVisible(true);
+  }
 
+  private void sendMessage() {
+    String text = messageField.getText().trim();
+    if (!text.isEmpty()) {
+      chatArea.append("You: " + text + "\n");
+      messageField.setText("");
+    }
+  }
+
+  public static void main(String[] args) {
+    SwingUtilities.invokeLater(Dashboard::new);
   }
 }
