@@ -144,21 +144,24 @@ public class Dashboard extends JFrame {
 
         //this will wrap bubble in alignment panel
         JPanel wrapper = new JPanel();
-
-        bubble.add(msgLabel, BorderLayout.CENTER);
-        //bubble.setMaximumSize(new Dimension(300, Integer.MAX_VALUE));
-
-        JPanel wrapper = new JPanel(new BorderLayout());
+        wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
         wrapper.setOpaque(false);
+        //this is the spacing between the bubbles
+        wrapper.setBorder(BorderFactory.createEmptyBorder(4,10,4,10));
+
         if(isSender) {
-          wrapper.add(bubble, BorderLayout.EAST);
+          wrapper.add(Box.createHorizontalGlue());
+          wrapper.add(bubble);
         }else {
-          wrapper.add(bubble, BorderLayout.WEST);
+          wrapper.add(bubble);
+          wrapper.add(Box.createHorizontalGlue());
         }
+        // this is were you will add the main panel
         messagePanel.add(wrapper);
         messagePanel.revalidate();
         messagePanel.repaint();
 
+        // auto-scroll to bottom
         JScrollBar vertical = scrollPane.getVerticalScrollBar();
         vertical.setValue(vertical.getMaximum());
 
