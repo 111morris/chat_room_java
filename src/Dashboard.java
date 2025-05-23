@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.Wrapper;
 
 public class Dashboard extends JFrame {
-  private String username;
+  private String username = "morris";
   private Client client;
   private final UserColorManager colorManager = new UserColorManager();
   private JTextArea chatArea;
@@ -63,8 +63,8 @@ public class Dashboard extends JFrame {
         return;
       }
       client.sendMessage(message);
-      //chatArea.append(username+": " + message + "\n");
-      addMessageBubble(username + message, colorManager.getColorForUser(username), true);
+      chatArea.append(username+": " + message + "\n");
+      //addMessageBubble(username + message, colorManager.getColorForUser(username), true);
 
       messageField.setText("");
     }
@@ -82,8 +82,6 @@ public class Dashboard extends JFrame {
       }
     }).start();
   }
-
-
 
   private void processAndAppendMessage(String msg) {
 
@@ -131,22 +129,26 @@ public class Dashboard extends JFrame {
 
         JLabel msgLabel = new JLabel("<html>" + message + "</html>");
         msgLabel.setForeground(Color.WHITE);
-        //msgLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+        msgLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
         msgLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        msgLabel.setOpaque(true);
+        msgLabel.setOpaque(false);
 
         //this will create the bubble and then add the label
-        JPanel bubble = new JPanel();
+        JPanel bubble = new JPanel(new BorderLayout());
         bubble.setLayout(new BoxLayout(bubble, BoxLayout.X_AXIS));
         bubble.setBackground(color);
-        //bubble.setBorder(BorderFactory.createEmptyBorder(8,12,8,12));
+        bubble.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+        bubble.setMaximumSize(new Dimension(280, Integer.MAX_VALUE));
         bubble.add(msgLabel);
         bubble.setAlignmentX(Component.LEFT_ALIGNMENT);
+        //this is for the rounded cornersb
+        bubble.setBorder(BorderFactory.createLineBorder(color.darker(),1,true));
+
 
         //this will wrap bubble in alignment panel
         JPanel wrapper = new JPanel();
         wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
-        wrapper.setOpaque(false;
+        wrapper.setOpaque(false);
         //this is the spacing between the bubbles
        //wrapper.setBorder(BorderFactory.createEmptyBorder(4,10,4,10));
 
