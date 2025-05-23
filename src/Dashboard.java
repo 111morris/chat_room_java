@@ -130,10 +130,10 @@ public class Dashboard extends JFrame {
 
         JLabel msgLabel = new JLabel("<html>" + message + "</html>");
         msgLabel.setForeground(Color.WHITE);
-        msgLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+        //msgLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
         bubble.add(msgLabel, BorderLayout.CENTER);
-        bubble.setMaximumSize(new Dimension(300, Integer.MAX_VALUE));
+        //bubble.setMaximumSize(new Dimension(300, Integer.MAX_VALUE));
 
         JPanel wrapper = new JPanel(new BorderLayout());
         wrapper.setOpaque(false);
@@ -156,26 +156,6 @@ public class Dashboard extends JFrame {
       }
     );
   }
-  /*
-  private void appendStyled(String text, Color color) {
-    SwingUtilities.invokeLater(()-> {
-      StyledDocument doc = chatArea.getStyledDocument();
-      Style style = chatArea.addStyle("ColorStyle", null);
-      StyleConstants.setForeground(style, color);
-      try{
-        doc.insertString(doc.getLength(), text, style);
-        chatArea.setCaretPosition(doc.getLength());
-      } catch (BadLocationException e) {
-       e.printStackTrace();
-      }
-    });
-  }*/
 
-  /*
-  private void appendToChat(String msg) {
-    SwingUtilities.invokeLater(()->{
-      chatArea.setText(chatArea.getText()+ msg + "\n");
-    });
-  }*/
 
 }
