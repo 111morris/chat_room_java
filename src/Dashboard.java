@@ -10,6 +10,7 @@ public class Dashboard extends JFrame {
   private final UserColorManager colorManager = new UserColorManager();
   private JPanel messagePanel;
   private JTextArea chatArea;
+  private JTextField messageField;
 
   private JScrollPane scrollPane;
 
@@ -49,10 +50,18 @@ public class Dashboard extends JFrame {
 
   public void createInputArea(){
 
-    //this is the input area
+    messageField = new JTextField();
+    sendButton = new JButton("Send");
+
     JPanel inputPanel = new JPanel(new BorderLayout());
-    inputField = new JTextField();
-    JButton sendButton = new JButton("Send");
+    inputPanel.add(messageField, BorderLayout.CENTER);
+    inputPanel.add(sendButton, BorderLayout.EAST);
+
+    add(inputPanel, BorderLayout.SOUTH);
+
+    sendButton.adActionListener(e -> sendMessage());
+    messageField.addActionListener(e -> sendMessage());
+
 
 
     sendButton.addActionListener(e -> sendMessage());
