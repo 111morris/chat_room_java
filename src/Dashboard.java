@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.sql.Wrapper;
 
 public class Dashboard extends JFrame {
   private String username;
@@ -138,23 +139,23 @@ public class Dashboard extends JFrame {
         JPanel bubble = new JPanel();
         bubble.setLayout(new BoxLayout(bubble, BoxLayout.X_AXIS));
         bubble.setBackground(color);
-        bubble.setBorder(BorderFactory.createEmptyBorder(8,12,8,12));
+        //bubble.setBorder(BorderFactory.createEmptyBorder(8,12,8,12));
         bubble.add(msgLabel);
         bubble.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         //this will wrap bubble in alignment panel
         JPanel wrapper = new JPanel();
         wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
-        wrapper.setOpaque(false);
+        wrapper.setOpaque(false;
         //this is the spacing between the bubbles
-        wrapper.setBorder(BorderFactory.createEmptyBorder(4,10,4,10));
+       //wrapper.setBorder(BorderFactory.createEmptyBorder(4,10,4,10));
 
         if(isSender) {
-          wrapper.add(Box.createHorizontalGlue());
+          //wrapper.add(Box.createHorizontalGlue());
           wrapper.add(bubble);
         }else {
           wrapper.add(bubble);
-          wrapper.add(Box.createHorizontalGlue());
+          //wrapper.add(Box.createHorizontalGlue());
         }
         // this is were you will add the main panel
         messagePanel.add(wrapper);
