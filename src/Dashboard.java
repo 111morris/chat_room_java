@@ -146,10 +146,6 @@ public class Dashboard extends JFrame {
         messagePanel.revalidate();
         messagePanel.repaint();
 
-        //scroll to bottom
-        //JScrollPane scrollPane1 = (JScrollPane) messagePanel.getParent().getParent();
-        //JScrollBar vertical = scrollPane1.getVerticalScrollBar();
-        //vertical.setValue(vertical.getMaximum());
         JScrollBar vertical = scrollPane.getVerticalScrollBar();
         vertical.setValue(vertical.getMaximum());
 
