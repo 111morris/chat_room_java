@@ -124,13 +124,26 @@ public class Dashboard extends JFrame {
   private void addMessageBubble(String message, Color color, boolean isSender){
     SwingUtilities.invokeLater(()->
       {
-        JPanel bubble = new JPanel(new BorderLayout());
-        bubble.setBackground(color);
-        bubble.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
+        //JPanel bubble = new JPanel(new BorderLayout());
+        //bubble.setBackground(color);
+        //bubble.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
 
         JLabel msgLabel = new JLabel("<html>" + message + "</html>");
         msgLabel.setForeground(Color.WHITE);
         //msgLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+        msgLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        msgLabel.setOpaque(true);
+
+        //this will create the bubble and then add the label
+        JPanel bubble = new JPanel();
+        bubble.setLayout(new BoxLayout(bubble, BoxLayout.X_AXIS));
+        bubble.setBackground(color);
+        bubble.setBorder(BorderFactory.createEmptyBorder(8,12,8,12));
+        bubble.add(msgLabel);
+        bubble.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        //this will wrap bubble in alignment panel
+        JPanel wrapper = new JPanel();
 
         bubble.add(msgLabel, BorderLayout.CENTER);
         //bubble.setMaximumSize(new Dimension(300, Integer.MAX_VALUE));
@@ -152,6 +165,4 @@ public class Dashboard extends JFrame {
       }
     );
   }
-
-
 }
