@@ -128,8 +128,9 @@ public class Dashboard extends JFrame {
         bubble.setBackground(color);
         bubble.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
 
-        JLabel msgLabel = new JLabel("<html><p style='width:200px;'>" + message + "</p></html>");
+        JLabel msgLabel = new JLabel("<html>" + message + "</html>");
         msgLabel.setForeground(Color.WHITE);
+        msgLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
         bubble.add(msgLabel, BorderLayout.CENTER);
         bubble.setMaximumSize(new Dimension(300, Integer.MAX_VALUE));
