@@ -135,20 +135,23 @@ public class Dashboard extends JFrame {
         bubble.setMaximumSize(new Dimension(300, Integer.MAX_VALUE));
 
         JPanel wrapper = new JPanel(new BorderLayout());
-        chatArea.setOpaque(false);
+        wrapper.setOpaque(false);
         if(isSender) {
-          chatArea.add(bubble, BorderLayout.EAST);
+          wrapper.add(bubble, BorderLayout.EAST);
         }else {
-          chatArea.add(bubble, BorderLayout.WEST);
+          wrapper.add(bubble, BorderLayout.WEST);
         }
         messagePanel.add(wrapper);
         messagePanel.revalidate();
         messagePanel.repaint();
 
         //scroll to bottom
-        JScrollPane scrollPane1 = (JScrollPane) messagePanel.getParent().getParent();
-        JScrollBar vertical = scrollPane1.getVerticalScrollBar();
+        //JScrollPane scrollPane1 = (JScrollPane) messagePanel.getParent().getParent();
+        //JScrollBar vertical = scrollPane1.getVerticalScrollBar();
+        //vertical.setValue(vertical.getMaximum());
+        JScrollBar vertical = scrollPane.getVerticalScrollBar();
         vertical.setValue(vertical.getMaximum());
+
       }
     );
   }
