@@ -3,14 +3,12 @@ import java.awt.*;
 import java.io.IOException;
 
 public class Dashboard extends JFrame {
-  private JFrame frame;
   private String username;
-  private JTextField inputField;
   private Client client;
   private final UserColorManager colorManager = new UserColorManager();
-  private JPanel messagePanel;
   private JTextArea chatArea;
   private JTextField messageField;
+  private JButton sendButton;
 
   private JScrollPane scrollPane;
 
@@ -35,17 +33,7 @@ public class Dashboard extends JFrame {
     chatArea.setEditable(false);
     JScrollPane scrollPane1 = new JScrollPane(chatArea);
     add(scrollPane1, BorderLayout.CENTER);
-
-
-    //this is the message panel setup
-    messagePanel = new JPanel();
-    messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
-    messagePanel.setBackground(Color.WHITE);
-
-    scrollPane = new JScrollPane(messagePanel);
-    scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-    panel.add(scrollPane, BorderLayout.CENTER);
-  }
+ }
 
 
   public void createInputArea(){
@@ -61,17 +49,6 @@ public class Dashboard extends JFrame {
 
     sendButton.adActionListener(e -> sendMessage());
     messageField.addActionListener(e -> sendMessage());
-
-
-
-    sendButton.addActionListener(e -> sendMessage());
-    inputField.addActionListener(e-> sendMessage());
-
-    inputPanel.add(inputField, BorderLayout.CENTER);
-    inputPanel.add(sendButton, BorderLayout.EAST);
-
-    panel.add(inputPanel, BorderLayout.SOUTH);
-    frame.add(panel);
 
   }
   private void sendMessage() {
