@@ -9,7 +9,7 @@ public class Dashboard extends JFrame {
   private JTextArea chatArea;
   private JTextField messageField;
   private JButton sendButton;
-
+  private JPanel messagePanel;
   private JScrollPane scrollPane;
 
   public Dashboard(String username, Client client){
@@ -23,16 +23,19 @@ public class Dashboard extends JFrame {
     createChatDisplayArea();
     createInputArea();
     listenForMessage();
-    show();
+    setVisible(true);
   }
 
   private void createChatDisplayArea() {
-    JPanel panel = new JPanel(new BorderLayout());
+    messagePanel = new JPanel();
+    messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
+    messagePanel.setBackground(Color.WHITE);
 
-    chatArea = new JTextArea();
-    chatArea.setEditable(false);
-    JScrollPane scrollPane1 = new JScrollPane(chatArea);
-    add(scrollPane1, BorderLayout.CENTER);
+    //chatArea = new JTextArea();
+    //chatArea.setEditable(false);
+    scrollPane = new JScrollPane(messagePanel);
+    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    add(scrollPane, BorderLayout.CENTER);
  }
 
   public void createInputArea(){
@@ -49,17 +52,20 @@ public class Dashboard extends JFrame {
   }
 
   private void sendMessage() {
-    String message = inputField.getText().trim();
+    String message = messageField.getText().trim();
     if (!message.isEmpty()){
       if(message.equalsIgnoreCase("/quit")){
         client.sendMessage(message);
         addMessageBubble("You have left the chat.", Color.GRAY, true);
         client.close();
-        frame.dispose();
+        dispose();
         return;
       }
       client.sendMessage(message);
-      inputField.setText("");
+      //chatArea.append(username+": " + message + "\n");
+      addMessageBubble(username + message, colorManager.getColorForUser(username), true);
+
+      messageField.setText("");
     }
   }
   private void listenForMessage() {
@@ -129,11 +135,11 @@ public class Dashboard extends JFrame {
         bubble.setMaximumSize(new Dimension(300, Integer.MAX_VALUE));
 
         JPanel wrapper = new JPanel(new BorderLayout());
-        wrapper.setOpaque(false);
+        chatArea.setOpaque(false);
         if(isSender) {
-          wrapper.add(bubble, BorderLayout.EAST);
+          chatArea.add(bubble, BorderLayout.EAST);
         }else {
-          wrapper.add(bubble, BorderLayout.WEST);
+          chatArea.add(bubble, BorderLayout.WEST);
         }
         messagePanel.add(wrapper);
         messagePanel.revalidate();
@@ -167,7 +173,5 @@ public class Dashboard extends JFrame {
       chatArea.setText(chatArea.getText()+ msg + "\n");
     });
   }*/
-  public void show() {
-    frame.setVisible(true);
-  }
+
 }
