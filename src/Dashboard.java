@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.io.IOException;
 
@@ -21,12 +20,12 @@ public class Dashboard extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
 
-    initializeUI();
+    initializeChatArea();
     listenForMessage();
     show();
   }
 
-  private void initializeUI(){
+  private void initializeChatArea(){
     JPanel panel = new JPanel(new BorderLayout());
 
     //this is the message panel setup
