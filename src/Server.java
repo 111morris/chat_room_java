@@ -85,15 +85,9 @@ public class Server implements Runnable {
         out = new PrintWriter(client.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
-        //out.println("Please input your nickname: ");
-        //nickname = in.readLine();
-
         nickname = in.readLine();
         System.out.println(nickname + " connected.");
-
-        String timestamp = "[" + getCurrentTime() + "]";
-        broadcast(timestamp + " " + nickname + ": " + message, this);
-
+        broadcast("[" + getCurrentTime() + "] " + nickname + " joined the chat!", this);
         String message;
         while ((message = in.readLine()) != null) {
           if (message.equalsIgnoreCase("/quit") || message.equalsIgnoreCase("/exit")) {
@@ -101,17 +95,16 @@ public class Server implements Runnable {
             break;
           } else if (message.startsWith("/nick ")) {
             String[] split = message.split(" ", 2);
-
             if (split.length == 2) {
               String oldName = nickname;
               nickname = split[1];
               out.println("[" + getCurrentTime() + "] Nickname changed to " + nickname);
-              broadcast("["+ getCurrentTime() + "] " + oldName + " is now known as " + nickname, this);
+              broadcast("[" + getCurrentTime() + "] " + oldName + " is now known as " + nickname, this);
             } else {
               out.println("Usage: /nick newname");
             }
           } else {
-            broadcast("[" + getCurrentTime()+"] " +nickname + ": " + message, this);
+            broadcast("[" + getCurrentTime() + "] " + nickname + ": " + message, this);
           }
         }
       } catch (IOException e) {
@@ -126,11 +119,9 @@ public class Server implements Runnable {
       java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("hh:mm a");
       return now.format(formatter);
     }
-
     public void sendMessage(String message) {
       out.println(message);
     }
-
     public void shutdown() {
       try {
         if(in != null) in.close();
