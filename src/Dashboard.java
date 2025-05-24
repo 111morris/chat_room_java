@@ -63,22 +63,33 @@ public class Dashboard extends JFrame {
   }
   private void sendMessage() {
     String message = messageField.getText().trim();
-    if (!message.isEmpty()){
-      if(message.equalsIgnoreCase("/quit")){
+    if (!message.isEmpty()) {
+      if (message.equalsIgnoreCase("/quit")) {
         client.sendMessage(message);
-        addMessageBubble("You have left the chat.", Color.GRAY, true);
+        addMessageBubble("[" + getCurrentTime() + "] You have left the chat.", Color.GRAY, true);
         client.close();
-        //dispose();
         return;
       }
+
+      // Send to server without timestamp
       client.sendMessage(message);
-      if(displayBubble) {
-        addMessageBubble(username + ": " + message, colorManager.getColorForUser(username), true);
-      }else {
-        chatArea.append(username + ": " + message + "\n");
+
+      // Show with timestamp locally
+      String displayMessage = "[" + getCurrentTime() + "] " + username + ": " + message;
+
+      if (displayBubble) {
+        addMessageBubble(displayMessage, colorManager.getColorForUser(username), true);
+      } else {
+        chatArea.append(displayMessage + "\n");
       }
+
       messageField.setText("");
     }
+  }
+  private String getCurrentTime() {
+    java.time.LocalTime now = java.time.LocalTime.now();
+    java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("hh:mm a");
+    return now.format(formatter);
   }
   private void listenForMessage() {
     new Thread(()->{
