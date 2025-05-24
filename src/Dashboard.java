@@ -82,7 +82,6 @@ public class Dashboard extends JFrame {
       } else {
         chatArea.append(displayMessage + "\n");
       }
-
       messageField.setText("");
     }
   }
