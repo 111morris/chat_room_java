@@ -9,12 +9,13 @@ public class Client {
   private BufferedReader in;
   private PrintWriter out;
 
-  public Client(String host, int port) throws IOException{
+  public Client(String host, int port, String username) throws IOException{
     socket = new Socket(host, port);
     out = new PrintWriter(socket.getOutputStream(), true);
     in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+    //this will send the username explicitly
+    out.println(username);
   }
-
   /**
    * Sends a message to the server
    * the first message send from the client (in SplashScreen) should be the nickname.
@@ -40,5 +41,4 @@ public class Client {
   public static void main(String[] args) {
     javax.swing.SwingUtilities.invokeLater(SplashScreen::new);
   }
-
 }
