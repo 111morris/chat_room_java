@@ -195,7 +195,7 @@ public class SplashScreen {
     }
     try{
       int port = Integer.parseInt(portText);
-      Client client = new Client(host, port);
+      Client client = new Client(host, port, username);
       client.sendMessage(username);
 
       new Dashboard(username, client);
