@@ -31,7 +31,6 @@ public class Server implements Runnable {
       //serverSocket is 9999
       server = new ServerSocket(port);
       pool = Executors.newCachedThreadPool();
-      System.out.println("Server started on port " + port);
       while (isRunning) {
         Socket client = server.accept();
         ConnectionHandler handler = new ConnectionHandler(client);
@@ -88,14 +87,17 @@ public class Server implements Runnable {
 
         //out.println("Please input your nickname: ");
         //nickname = in.readLine();
-        System.out.println(nickname + " Connected.");
-        broadcast(nickname + " joined the chat!", this);
 
+        nickname = in.readLine();
+        System.out.println(nickname + " connected.");
+
+        String timestamp = "[" + getCurrentTime() + "]";
+        broadcast(timestamp + " " + nickname + ": " + message, this);
 
         String message;
         while ((message = in.readLine()) != null) {
           if (message.equalsIgnoreCase("/quit") || message.equalsIgnoreCase("/exit")) {
-            broadcast(nickname + " left the chat.", this);
+            broadcast("[" + getCurrentTime() + "] " + nickname + " left the chat.", this);
             break;
           } else if (message.startsWith("/nick ")) {
             String[] split = message.split(" ", 2);
@@ -103,13 +105,13 @@ public class Server implements Runnable {
             if (split.length == 2) {
               String oldName = nickname;
               nickname = split[1];
-              out.println("Nickname changed to " + nickname);
-              broadcast(oldName + " is now known as " + nickname, this);
+              out.println("[" + getCurrentTime() + "] Nickname changed to " + nickname);
+              broadcast("["+ getCurrentTime() + "] " + oldName + " is now known as " + nickname, this);
             } else {
               out.println("Usage: /nick newname");
             }
           } else {
-            broadcast(nickname + ": " + message, this);
+            broadcast("[" + getCurrentTime()+"] " +nickname + ": " + message, this);
           }
         }
       } catch (IOException e) {
@@ -117,6 +119,12 @@ public class Server implements Runnable {
       } finally {
         shutdown();
       }
+    }
+
+    private String getCurrentTime() {
+      java.time.LocalTime now = java.time.LocalTime.now();
+      java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("hh:mm a");
+      return now.format(formatter);
     }
 
     public void sendMessage(String message) {
