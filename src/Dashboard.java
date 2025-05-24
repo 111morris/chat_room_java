@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.Wrapper;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Dashboard extends JFrame {
   private String username = "morris";
@@ -58,9 +60,7 @@ public class Dashboard extends JFrame {
 
     sendButton.addActionListener(e->sendMessage());
     messageField.addActionListener(e->sendMessage());
-
   }
-
   private void sendMessage() {
     String message = messageField.getText().trim();
     if (!message.isEmpty()){
@@ -116,7 +116,6 @@ public class Dashboard extends JFrame {
       addMessageBubble(trimmedMsg, Color.GRAY, false);
       return;
     }
-
     // this will check if the message contains colon to parse user message
     if(trimmedMsg.contains(":")){
       int colonIndex = trimmedMsg.indexOf(":");
@@ -134,50 +133,49 @@ public class Dashboard extends JFrame {
   private void addMessageBubble(String message, Color color, boolean isSender){
     SwingUtilities.invokeLater(()->
       {
-        if(displayBubble) {
-          JLabel msgLabel = new JLabel("<html>" + message + "</html>");
-          msgLabel.setForeground(Color.WHITE);
-          msgLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-          msgLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-          msgLabel.setOpaque(false);
+        SwingUtilities.invokeLater(() -> {
+          // Format the current time
 
-          //this will create the bubble and then add the label
-          JPanel bubble = new JPanel();
-          bubble.setLayout(new BorderLayout());
-          bubble.setBackground(color);
-          bubble.setBorder(BorderFactory.createCompoundBorder(
-              BorderFactory.createEmptyBorder(3,5,3,5),
-              BorderFactory.createLineBorder(Color.magenta.darker(), 1, true)
-          ));
-          bubble.add(msgLabel, BorderLayout.CENTER);
-          bubble.setMaximumSize(new Dimension(280, Integer.MAX_VALUE));
+          if (displayBubble) {
+            JLabel msgLabel = new JLabel("<html>" + message + "</html>");
+            msgLabel.setForeground(Color.WHITE);
+            msgLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+            msgLabel.setBorder(BorderFactory.createEmptyBorder(5, 8, 5, 8));
+            msgLabel.setOpaque(false);
 
+            JPanel bubble = new JPanel();
+            bubble.setLayout(new BorderLayout());
+            bubble.setBackground(color);
+            bubble.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createEmptyBorder(3, 5, 3, 5),
+                BorderFactory.createLineBorder(color.darker(), 1, true)
+            ));
+            bubble.add(msgLabel, BorderLayout.CENTER);
+            bubble.setMaximumSize(new Dimension(250, Integer.MAX_VALUE));
 
-          //this will wrap bubble in alignment panel
-          JPanel wrapper = new JPanel();
-          wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
-          wrapper.setOpaque(false);
+            JPanel wrapper = new JPanel();
+            wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
+            wrapper.setOpaque(false);
 
-          if(isSender) {
-            wrapper.add(Box.createHorizontalGlue());
-            wrapper.add(bubble);
-          }else {
-            wrapper.add(bubble);
-            wrapper.add(Box.createHorizontalGlue());
+            if (isSender) {
+              wrapper.add(Box.createHorizontalGlue());
+              wrapper.add(bubble);
+            } else {
+              wrapper.add(bubble);
+              wrapper.add(Box.createHorizontalGlue());
+            }
+
+            messagePanel.add(wrapper);
+            messagePanel.revalidate();
+            messagePanel.repaint();
+          } else {
+            chatArea.append(message + "\n");
+            chatArea.setCaretPosition(chatArea.getDocument().getLength());
           }
-          // this is were you will add the main panel
-          messagePanel.add(wrapper);
-          messagePanel.revalidate();
-          messagePanel.repaint();
-        } else {
-          chatArea.append(message + "\n");
-          chatArea.setCaretPosition(chatArea.getDocument().getLength());
-        }
 
-        // auto-scroll to bottom
-        JScrollBar vertical = scrollPane.getVerticalScrollBar();
-        vertical.setValue(vertical.getMaximum());
-
+          JScrollBar vertical = scrollPane.getVerticalScrollBar();
+          vertical.setValue(vertical.getMaximum());
+        });
       }
     );
   }
