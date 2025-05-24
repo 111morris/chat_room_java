@@ -68,13 +68,15 @@ public class Dashboard extends JFrame {
         client.sendMessage(message);
         addMessageBubble("You have left the chat.", Color.GRAY, true);
         client.close();
-        dispose();
+        //dispose();
         return;
       }
       client.sendMessage(message);
-      chatArea.append(username+": " + message + "\n");
-      //addMessageBubble(username + message, colorManager.getColorForUser(username), true);
-
+      if(displayBubble) {
+        addMessageBubble(username + ": " + message, colorManager.getColorForUser(username), true);
+      }else {
+        chatArea.append(username + ": " + message + "\n");
+      }
       messageField.setText("");
     }
   }
@@ -132,34 +134,40 @@ public class Dashboard extends JFrame {
   private void addMessageBubble(String message, Color color, boolean isSender){
     SwingUtilities.invokeLater(()->
       {
-        //JPanel bubble = new JPanel(new BorderLayout());
-        //bubble.setBackground(color);
-        //bubble.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
+        if(displayBubble) {
 
-        JLabel msgLabel = new JLabel("<html>" + message + "</html>");
-        msgLabel.setForeground(Color.WHITE);
-        msgLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-        msgLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        msgLabel.setOpaque(false);
+          //JPanel bubble = new JPanel(new BorderLayout());
+          //bubble.setBackground(color);
+          //bubble.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
 
-        //this will create the bubble and then add the label
-        JPanel bubble = new JPanel(new BorderLayout());
-        bubble.setLayout(new BoxLayout(bubble, BoxLayout.X_AXIS));
-        bubble.setBackground(color);
-        bubble.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
-        bubble.setMaximumSize(new Dimension(280, Integer.MAX_VALUE));
-        bubble.add(msgLabel);
-        bubble.setAlignmentX(Component.LEFT_ALIGNMENT);
-        //this is for the rounded cornersb
-        bubble.setBorder(BorderFactory.createLineBorder(color.darker(),1,true));
+          JLabel msgLabel = new JLabel("<html>" + message + "</html>");
+          msgLabel.setForeground(Color.WHITE);
+          msgLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+          msgLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+          msgLabel.setOpaque(false);
+
+          //this will create the bubble and then add the label
+          JPanel bubble = new JPanel(new BorderLayout());
+          bubble.setLayout(new BoxLayout(bubble, BoxLayout.X_AXIS));
+          bubble.setBackground(color);
+          bubble.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+          bubble.setMaximumSize(new Dimension(280, Integer.MAX_VALUE));
+          bubble.add(msgLabel);
+          bubble.setAlignmentX(Component.LEFT_ALIGNMENT);
+          //this is for the rounded cornersb
+          bubble.setBorder(BorderFactory.createLineBorder(color.darker(), 1, true));
 
 
-        //this will wrap bubble in alignment panel
-        JPanel wrapper = new JPanel();
-        wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
-        wrapper.setOpaque(false);
-        //this is the spacing between the bubbles
-       //wrapper.setBorder(BorderFactory.createEmptyBorder(4,10,4,10));
+          //this will wrap bubble in alignment panel
+          JPanel wrapper = new JPanel();
+          wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
+          wrapper.setOpaque(false);
+          //this is the spacing between the bubbles
+          //wrapper.setBorder(BorderFactory.createEmptyBorder(4,10,4,10));
+        } else {
+          chatArea.append(message + "\n");
+          chatArea.setCaretPosition(chatArea.getDocument().getLength());
+        }
 
         if(isSender) {
           //wrapper.add(Box.createHorizontalGlue());
