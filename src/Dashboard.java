@@ -135,11 +135,6 @@ public class Dashboard extends JFrame {
     SwingUtilities.invokeLater(()->
       {
         if(displayBubble) {
-
-          //JPanel bubble = new JPanel(new BorderLayout());
-          //bubble.setBackground(color);
-          //bubble.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
-
           JLabel msgLabel = new JLabel("<html>" + message + "</html>");
           msgLabel.setForeground(Color.WHITE);
           msgLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -147,23 +142,23 @@ public class Dashboard extends JFrame {
           msgLabel.setOpaque(false);
 
           //this will create the bubble and then add the label
-          JPanel bubble = new JPanel(new BorderLayout());
-          bubble.setLayout(new BoxLayout(bubble, BoxLayout.X_AXIS));
+          JPanel bubble = new JPanel();
+          bubble.setLayout(new BorderLayout());
           bubble.setBackground(color);
-          bubble.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+          bubble.setBorder(BorderFactory.createCompoundBorder(
+              BorderFactory.createEmptyBorder(3,5,3,5),
+              BorderFactory.createLineBorder(Color.magenta.darker(), 1, true)
+          ));
+          bubble.add(msgLabel, BorderLayout.CENTER);
           bubble.setMaximumSize(new Dimension(280, Integer.MAX_VALUE));
-          bubble.add(msgLabel);
-          bubble.setAlignmentX(Component.LEFT_ALIGNMENT);
-          //this is for the rounded cornersb
-          bubble.setBorder(BorderFactory.createLineBorder(color.darker(), 1, true));
 
 
           //this will wrap bubble in alignment panel
           JPanel wrapper = new JPanel();
           wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
           wrapper.setOpaque(false);
-          //this is the spacing between the bubbles
-          //wrapper.setBorder(BorderFactory.createEmptyBorder(4,10,4,10));
+
+
         } else {
           chatArea.append(message + "\n");
           chatArea.setCaretPosition(chatArea.getDocument().getLength());
