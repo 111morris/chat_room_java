@@ -12,6 +12,7 @@ public class Dashboard extends JFrame {
   private JButton sendButton;
   private JPanel messagePanel;
   private JScrollPane scrollPane;
+  private boolean displayBubble = false;
 
   public Dashboard(String username, Client client){
     this.username = username;
@@ -28,15 +29,23 @@ public class Dashboard extends JFrame {
   }
 
   private void createChatDisplayArea() {
-    messagePanel = new JPanel();
-    messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
-    messagePanel.setBackground(Color.WHITE);
+    if(displayBubble){
+      messagePanel = new JPanel();
+      messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
+      scrollPane = new JScrollPane(messagePanel);
 
-    //chatArea = new JTextArea();
-    //chatArea.setEditable(false);
-    scrollPane = new JScrollPane(messagePanel);
-    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    add(scrollPane, BorderLayout.CENTER);
+      scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+      add(scrollPane, BorderLayout.CENTER);  messagePanel.setBackground(Color.WHITE);
+    } else {
+      chatArea = new JTextArea();
+      chatArea.setEditable(false);
+      chatArea.setLineWrap(true);
+      chatArea.setWrapStyleWord(true);
+
+      scrollPane = new JScrollPane(chatArea);
+      scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+      add(scrollPane, BorderLayout.CENTER);
+    }
  }
 
   public void createInputArea(){
