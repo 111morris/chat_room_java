@@ -67,8 +67,6 @@ public class Server implements Runnable {
       e.printStackTrace();
     }
   }
-
-
   private class ConnectionHandler implements Runnable {
     private Socket client;
     private BufferedReader in;
