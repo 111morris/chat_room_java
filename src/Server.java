@@ -129,7 +129,7 @@ public class Server implements Runnable {
         if(client != null && !client.isClosed()) client.close();;
         connections.remove(this);
       } catch (IOException e) {
-        // ignore
+        // ignore this
       }
     }
   }
