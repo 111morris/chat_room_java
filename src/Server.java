@@ -50,7 +50,6 @@ public class Server implements Runnable {
       }
     }
   }
-
   public void shutdown() {
     isRunning = false;
     try {
@@ -131,7 +130,6 @@ public class Server implements Runnable {
       }
     }
   }
-
   public static void main(String[] args) {
     int port = 9999;
     Server server = new Server(port);
