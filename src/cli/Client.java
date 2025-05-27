@@ -17,4 +17,16 @@ public class Client {
       out.println(message);
     }
   }
+
+  public BufferedReader getIn() {
+    return in;
+  }
+  public void close(){
+    try{
+      if(out != null) {
+        out.close();
+      }
+      if(in != null) in.close();
+    }
+  }
 }
