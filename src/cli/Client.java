@@ -1,6 +1,7 @@
 package cli;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -23,10 +24,11 @@ public class Client {
   }
   public void close(){
     try{
-      if(out != null) {
-        out.close();
-      }
+      if(out != null) out.close();
       if(in != null) in.close();
+      if(socket != null && !socket.isClosed()) socket.close();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
   }
 }
