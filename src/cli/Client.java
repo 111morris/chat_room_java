@@ -8,4 +8,8 @@ public class Client {
   private Socket socket;
   private BufferedReader in;
   private PrintWriter out;
+
+  public Client() {
+
+  }
 }
