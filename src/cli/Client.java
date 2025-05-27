@@ -28,7 +28,10 @@ public class Client {
       if(in != null) in.close();
       if(socket != null && !socket.isClosed()) socket.close();
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      System.err.println("Error closing client connection: " + e.getMessage());
     }
+  }
+  public void main(String[] args) {
+
   }
 }
