@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.sql.Wrapper;
 
 public class Dashboard extends JFrame {
   private String username = "morris";
