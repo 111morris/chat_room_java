@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.Wrapper;
-import java.time.LocalTime;
 
 public class Dashboard extends JFrame {
   private String username = "morris";
