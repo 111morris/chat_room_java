@@ -96,6 +96,7 @@ public class Server implements Runnable {
               nickname = split[1];
               out.println("[" + getCurrentTime() + "] Nickname changed to " + nickname);
               broadcast("[" + getCurrentTime() + "] " + oldName + " is now known as " + nickname, this);
+
             } else {
               out.println("Usage: /nick newname");
             }
