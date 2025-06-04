@@ -13,6 +13,10 @@ public class Dashboard extends JFrame {
   private JScrollPane scrollPane;
   private boolean displayBubble = false;
 
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
   public Dashboard(String username, Client client){
     this.username = username;
     this.client = client;
