@@ -17,4 +17,10 @@ public class Client {
     in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
   }
 
+  public BufferedReader getIn() {
+    return in;
+  }
+  public void close(){
+    if(out !=null) out.close();
+  }
 }
