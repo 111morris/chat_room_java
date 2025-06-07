@@ -29,5 +29,8 @@ public class Client {
       System.err.println("Error closing client connection: " + e.getMessage());
     }
   }
+  public static void main(String[] args) {
+
+  }
 
 }
