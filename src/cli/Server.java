@@ -36,10 +36,6 @@ public class Server implements Runnable{
       }
     }
     public void broadcast(String message, ConnectionHandler sender){
-      ConnectionHandler[] connections;
-      for(ConnectionHandler ch: connections) {
-
-        }
 
       }
     }
