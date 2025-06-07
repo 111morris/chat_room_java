@@ -35,5 +35,8 @@ public class Server implements Runnable{
         throw new RuntimeException(e);
       }
     }
+    public void broadcast(String message, ConnectionHandler sender){
+
+    }
   }
 }
