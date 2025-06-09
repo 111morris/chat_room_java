@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 
 public class Server implements Runnable{
@@ -17,7 +18,13 @@ public class Server implements Runnable{
   private ExecutorService pool;
   private boolean isRunning;
   private int port;
+
+  public Server(int port){
+    this.port = port;
+    this.connections = new CopyOnWriteArrayList<>();
+  }
 }
+
 
   @Override
   public void run() {
