@@ -9,9 +9,12 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 public class Server implements Runnable{
   private List<ConnectionHandler> connections;
+  private ServerSocket server;
+  private ExecutorService pool;
 }
 
   private int port = 9999;
