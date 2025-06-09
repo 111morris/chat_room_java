@@ -24,6 +24,12 @@ public class Server implements Runnable{
     this.connections = new CopyOnWriteArrayList<>();
     this.isRunning = true;
   }
+
+  @Override
+  public void  run() {
+    ServerSocket server = new ServerSocket(port);
+
+  }
 }
 
 
