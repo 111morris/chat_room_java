@@ -15,9 +15,10 @@ public class Server implements Runnable{
   private List<ConnectionHandler> connections;
   private ServerSocket server;
   private ExecutorService pool;
+  private boolean isRunning;
+  private int port;
 }
 
-  private int port = 9999;
   @Override
   public void run() {
     try{
