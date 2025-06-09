@@ -40,8 +40,7 @@ public class Server implements Runnable{
   @Override
   public void run() {
     try{
-      ServerSocket server = new ServerSocket(port);
-      Socket client = server.accept();
+
     } catch (Exception e) {
 
     }
