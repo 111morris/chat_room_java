@@ -39,11 +39,7 @@ public class Server implements Runnable{
 
   @Override
   public void run() {
-    try{
 
-    } catch (Exception e) {
-
-    }
   }
   class ConnectionHandler implements Runnable{
    private Socket client;
