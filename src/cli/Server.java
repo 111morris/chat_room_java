@@ -37,10 +37,6 @@ public class Server implements Runnable{
 }
 
 
-  @Override
-  public void run() {
-
-  }
   class ConnectionHandler implements Runnable{
    private Socket client;
    private BufferedReader in;
