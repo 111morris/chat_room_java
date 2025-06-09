@@ -43,7 +43,7 @@ public class Server implements Runnable{
       ServerSocket server = new ServerSocket(port);
       Socket client = server.accept();
     } catch (Exception e) {
-      //throw new RuntimeException(e);
+
     }
   }
   class ConnectionHandler implements Runnable{
