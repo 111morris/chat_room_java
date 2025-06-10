@@ -9,7 +9,29 @@ public class Dashboard extends JFrame {
   private JButton sendButton;
 
   public Dashboard() {
+    setTitle("Chat Room");
+    setSize(400, 500);
+    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setLayout(new BorderLayout());
 
+    chatArea = new JTextArea();
+    chatArea.setEditable(false);
+    JScrollPane scrollPane = new JScrollPane(chatArea);
+    add(scrollPane, BorderLayout.CENTER);
+
+    messageField = new JTextField();
+    sendButton = new JButton("Send");
+
+    JPanel inputPanel = new JPanel(new BorderLayout());
+    inputPanel.add(messageField, BorderLayout.CENTER);
+    inputPanel.add(sendButton, BorderLayout.EAST);
+
+    add(inputPanel, BorderLayout.SOUTH);
+
+    sendButton.addActionListener(e -> sendMessage());
+    messageField.addActionListener(e -> sendMessage());
+
+    setVisible(true);
   }
 
   private void sendMessage() {
