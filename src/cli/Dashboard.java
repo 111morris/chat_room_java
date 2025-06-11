@@ -37,8 +37,7 @@ public class Dashboard extends JFrame {
   private void sendMessage() {
     String text = messageField.getText().trim();
     if (!text.isEmpty()) {
-      chatArea.append("You: " + text + "\n");
-      messageField.setText("");
+
     }
   }
 
