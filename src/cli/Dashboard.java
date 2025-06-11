@@ -46,6 +46,8 @@ public class Dashboard extends JFrame {
 
       //send to server without timestamp
       client.sendMessage(message);
+
+      //this will show with timestamp locally
     }
   }
 
