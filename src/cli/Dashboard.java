@@ -35,7 +35,10 @@ public class Dashboard extends JFrame {
   }
 
   private void sendMessage() {
+    String message = messageField.getText().trim();
+    if(!message.isEmpty()) {
 
+    }
   }
 
   public static void main(String[] args) {
