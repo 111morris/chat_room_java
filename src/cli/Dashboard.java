@@ -36,7 +36,17 @@ public class Dashboard extends JFrame {
   }
 
   private void sendMessage() {
+    String message = messageField.getText().trim();
+    if(!message.isEmpty()){
+      if(message.equalsIgnoreCase("/leave")){
+        client.sendMessage(message);
+        client.close();
+        return;
+      }
 
+      //send to server without timestamp
+      client.sendMessage(message);
+    }
   }
 
   public static void main(String[] args) {
