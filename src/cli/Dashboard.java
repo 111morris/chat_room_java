@@ -7,6 +7,7 @@ public class Dashboard extends JFrame {
   private JTextArea chatArea;
   private JTextField messageField;
   private JButton sendButton;
+  private Client client;
 
   public Dashboard() {
     setTitle("Chat Room");
@@ -35,10 +36,7 @@ public class Dashboard extends JFrame {
   }
 
   private void sendMessage() {
-    String message = messageField.getText().trim();
-    if(!message.isEmpty()) {
 
-    }
   }
 
   public static void main(String[] args) {
