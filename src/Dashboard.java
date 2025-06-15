@@ -58,7 +58,6 @@ public class Dashboard extends JFrame {
     inputPanel.add(messageField, BorderLayout.CENTER);
     inputPanel.add(sendButton, BorderLayout.EAST);
     add(inputPanel, BorderLayout.SOUTH);
-
     sendButton.addActionListener(e->sendMessage());
     messageField.addActionListener(e->sendMessage());
   }
@@ -71,7 +70,6 @@ public class Dashboard extends JFrame {
         client.close();
         return;
       }
-
       // Send to server without timestamp
       client.sendMessage(message);
 
@@ -104,9 +102,7 @@ public class Dashboard extends JFrame {
       }
     }).start();
   }
-
   private void processAndAppendMessage(String msg) {
-
     /**
      * handling of different types of messages:
      * 1. normal messages: format is "username: message"
@@ -119,7 +115,6 @@ public class Dashboard extends JFrame {
      */
     //the format is "Morris: Hello there!"
     String trimmedMsg = msg.trim();
-
    //this will check for notification with specific phrasess
     if(trimmedMsg.endsWith(" joined the chat!") ||
         trimmedMsg.endsWith(" left the chat.") ||
@@ -163,11 +158,9 @@ public class Dashboard extends JFrame {
             ));
             bubble.add(msgLabel, BorderLayout.CENTER);
             bubble.setMaximumSize(new Dimension(250, Integer.MAX_VALUE));
-
             JPanel wrapper = new JPanel();
             wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
             wrapper.setOpaque(false);
-
             if (isSender) {
               wrapper.add(Box.createHorizontalGlue());
               wrapper.add(bubble);
@@ -175,7 +168,6 @@ public class Dashboard extends JFrame {
               wrapper.add(bubble);
               wrapper.add(Box.createHorizontalGlue());
             }
-
             messagePanel.add(wrapper);
             messagePanel.revalidate();
             messagePanel.repaint();
@@ -183,7 +175,6 @@ public class Dashboard extends JFrame {
             chatArea.append(message + "\n");
             chatArea.setCaretPosition(chatArea.getDocument().getLength());
           }
-
           JScrollBar vertical = scrollPane.getVerticalScrollBar();
           vertical.setValue(vertical.getMaximum());
         });
