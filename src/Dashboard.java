@@ -162,8 +162,7 @@ public class Dashboard extends JFrame {
             wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
             wrapper.setOpaque(false);
             if (isSender) {
-              wrapper.add(Box.createHorizontalGlue());
-              wrapper.add(bubble);
+
             } else {
               wrapper.add(bubble);
               wrapper.add(Box.createHorizontalGlue());
