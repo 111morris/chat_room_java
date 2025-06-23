@@ -143,34 +143,7 @@ public class Dashboard extends JFrame {
           // Format the current time
 
           if (displayBubble) {
-            JLabel msgLabel = new JLabel("<html>" + message + "</html>");
-            msgLabel.setForeground(Color.WHITE);
-            msgLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-            msgLabel.setBorder(BorderFactory.createEmptyBorder(5, 8, 5, 8));
-            msgLabel.setOpaque(false);
 
-            JPanel bubble = new JPanel();
-            bubble.setLayout(new BorderLayout());
-            bubble.setBackground(color);
-            bubble.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(3, 5, 3, 5),
-                BorderFactory.createLineBorder(color.darker(), 1, true)
-            ));
-            bubble.add(msgLabel, BorderLayout.CENTER);
-            bubble.setMaximumSize(new Dimension(250, Integer.MAX_VALUE));
-            JPanel wrapper = new JPanel();
-            wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
-            wrapper.setOpaque(false);
-            if (isSender) {
-              wrapper.add(Box.createHorizontalGlue());
-              wrapper.add(bubble);
-            } else {
-              wrapper.add(bubble);
-              wrapper.add(Box.createHorizontalGlue());
-            }
-            messagePanel.add(wrapper);
-            messagePanel.revalidate();
-            messagePanel.repaint();
           } else {
             chatArea.append(message + "\n");
             chatArea.setCaretPosition(chatArea.getDocument().getLength());
