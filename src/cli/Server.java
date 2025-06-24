@@ -10,27 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 
 public class Server implements Runnable{
-  private List<ConnectionHandler> connections;
-  private ServerSocket server;
-  private ExecutorService pool;
-  private boolean isRunning;
-  private int port;
 
-  public Server(int port){
-    this.port = port;
-    this.connections = new CopyOnWriteArrayList<>();
-    this.isRunning = true;
-  }
-
-  @Override
-  public void  run() {
-    try{
-     ServerSocket server = new ServerSocket(port);
-     Socket client = server.accept();
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
-  }
 }
   class ConnectionHandler implements Runnable{
    private Socket client;
