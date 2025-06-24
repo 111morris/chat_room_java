@@ -42,11 +42,7 @@ public class Server implements Runnable{
     }
     @Override
     public void run(){
-      try {
 
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
     }
     public void broadcast(String message, ConnectionHandler sender){
   }
