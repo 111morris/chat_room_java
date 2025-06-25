@@ -73,22 +73,27 @@ A simple TCP-based chat room built using pure Java. This chat room application c
     - Once connected, clients can send and receive messages to/from the server.
     - Clients can change their nickname with the `/nick` command and exit the chat using `/quit`.
 
-## Deployment (TODO)
+## Accessing the Chat Room Over the Internet
 
-To make the application accessible over the internet, follow these steps:
+To make this chat room application work across the internet (e.g., between friends in different locations), follow these steps:
 
-1. **Set Up a Public Server**:
-    - Deploy the server to a cloud provider or use port forwarding to expose the server to the internet.
+---
 
-2. **Port Forwarding**:
-    - Set up port forwarding on your router to allow external connections to your server on port `9999`.
+### 1. ✅ Set Up the Server
+Run the server on a machine that can accept external connections. You have two options:
 
-3. **Update Client**:
-    - Change the client’s connection from `127.0.0.1` to the public IP address of your server.
-    - Update the connection line in the client code:
-      ```java
-      client = new Socket("your-public-server-ip", 9999);
-      ```
+#### Option A: Use Port Forwarding
+1. Run your server (e.g., `java Server`) on your computer.
+2. Log into your router and set up **port forwarding** to open port `9999` to your local machine's IP.
+3. Find your **public IP** at [https://whatismyipaddress.com](https://whatismyipaddress.com).
+4. Share that IP and port with your friend.
+
+#### Option B: Use a Tunneling Tool (Recommended for Testing)
+Use tools like **Ngrok** or **Tunnelmole** to expose your local server.
+
+##### Ngrok Example:
+```bash
+ngrok tcp 9999
 
 ## Code Explanation
 
