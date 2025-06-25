@@ -79,7 +79,7 @@ To make this chat room application work across the internet (e.g., between frien
 
 ---
 
-### 1. ✅ Set Up the Server
+### 1. Set Up the Server
 Run the server on a machine that can accept external connections. You have two options:
 
 #### Option A: Use Port Forwarding
@@ -94,6 +94,58 @@ Use tools like **Ngrok** or **Tunnelmole** to expose your local server.
 ##### Ngrok Example:
 ```bash
 ngrok tcp 9999
+```
+
+You'll get a forwarding address like:
+```bash
+tcp://0.tcp.ngrok.io:12345
+```
+Your friend can connect using:
+
+```
+Host/IP: 0.tcp.ngrok.io
+Port: 12345
+```
+Tunnelmole Example:
+```bassh
+tm 9999
+```
+
+It will give you something like:
+```
+tcp://0.tcp.tunnelmole.net:11111
+```
+
+2.  Update the Client (SplashScreen)
+   When your friend runs the client:
+
+Enter the public IP or tunnel address as the server IP.
+
+Use the port you exposed (e.g., 12345).
+
+Choose a username, and connect!
+
+3.  Firewall Notes
+   Make sure your firewall (and antivirus) allows connections to port 9999 (or the port you're using). If using a cloud server, allow inbound TCP on that port.
+
+4.  Sample Client Socket Code (Manual Connection)
+   If you're manually hardcoding the IP in Java:
+```
+client = new Socket("your-public-server-ip-or-ngrok-host", 12345);
+ ```
+But it's recommended to let the user enter the host/port in the SplashScreen.
+
+5.  Live Notifications
+   When a user connects, the server will notify all clients:
+```
+Morris joined the chat!
+```
+When a user sends a message, it appears immediately in the dashboard.
+
+When someone types /quit, the dashboard closes and others see:
+```
+Morris left the chat.
+```
 
 ## Code Explanation
 
