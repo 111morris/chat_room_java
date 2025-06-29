@@ -31,9 +31,7 @@ public class Client {
   }
   public void close(){
     try {
-      if(out != null) out.close();
-      if(in != null) in.close();
-      if(socket != null && !socket.isClosed()) socket.close();
+
     } catch (IOException e) {
       System.err.println("Error closing client connection: " + e.getMessage());
     }
