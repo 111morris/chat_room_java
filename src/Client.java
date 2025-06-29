@@ -23,6 +23,7 @@ public class Client {
    */
   public void sendMessage(String message) {
     if(out !=null){
+      out.println(message);
     }
   }
   public BufferedReader getIn() {
