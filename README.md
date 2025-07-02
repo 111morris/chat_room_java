@@ -147,7 +147,7 @@ When someone types /quit, the dashboard closes and others see:
 Morris left the chat.
 ```
 
-## Code Explanation
+git status## Code Explanation
 
 - **Multithreading**:
     - The application uses Java’s `Runnable` interface for multithreading, allowing the server to handle multiple client connections concurrently.
