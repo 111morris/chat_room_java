@@ -17,7 +17,9 @@ public class Server implements Runnable{
   private int port;
 
   public Server(int port){
-
+    this.port = port;
+    this.connections = new CopyOnWriteArrayList<>();
+    this.isRunning = true;
   }
 
   @Override
