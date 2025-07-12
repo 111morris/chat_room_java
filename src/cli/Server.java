@@ -42,7 +42,12 @@ public class Server implements Runnable{
     }
     @Override
     public void run(){
-
+      try {
+        out = new PrintWriter(client.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
     }
     public void broadcast(String message, ConnectionHandler sender){
   }
