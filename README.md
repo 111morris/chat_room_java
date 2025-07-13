@@ -183,3 +183,5 @@ git status## Code Explanation
     - /whisper - for private messages.
     - /help - to show available commands
 - **Network Resilience**
+  - Add a retry mechanism if connecting to the server fails
+  - improve exception messages to include context(e.g, which IP/ prot failed).
