@@ -26,6 +26,9 @@ public class Client {
       out.println(message);
     }
   }
+  public void printline() {
+    System.out.println("this is a line");
+  }
   public BufferedReader getIn() {
     return in;
   }
