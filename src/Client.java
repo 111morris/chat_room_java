@@ -27,7 +27,6 @@ public class Client {
     }
   }
 
-  
   public BufferedReader getIn() {
     return in;
   }
