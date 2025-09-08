@@ -102,6 +102,10 @@ public class Dashboard extends JFrame {
       }
     }).start();
   }
+
+  private void print_hello() {
+    System.out.println("hello world");
+  }
   private void processAndAppendMessage(String msg) {
     /**
      * handling of different types of messages:
