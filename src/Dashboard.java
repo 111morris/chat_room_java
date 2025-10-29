@@ -17,19 +17,6 @@ public class Dashboard extends JFrame {
     this.username = username;
   }
 
-  public Dashboard(String username, Client client){
-    this.username = username;
-    this.client = client;
-    setTitle("Chatroom - "+ username);
-    setSize(400,600);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLocationRelativeTo(null);
-
-    createChatDisplayArea();
-    createInputArea();
-    listenForMessage();
-    setVisible(true);
-  }
 
   private void createChatDisplayArea() {
     if(displayBubble){
