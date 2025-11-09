@@ -162,26 +162,3 @@ git status## Code Explanation
     - Messages from one client are broadcast to all connected clients so that everyone can see the conversation.
 
 ## Future Improvements
-
-- **Security**:
-    - Implement proper encryption for message transmission (e.g., using SSL/TLS).
-    - Authenticate users before allowing them to join the chat room.
-
-- **Message Persistence**:
-    - Store chat messages in a database or file for future reference.
-
-- **User Interface**:
-    - Create a GUI for the client application for a more user-friendly experience.
-
-- **Add input validation on Server Side**:
-  - currently, anyone can connect and use any nickname.
-    - this will be done by validating the nickname (max lenght, allowed characters)
-    - prevent duplicate nicknames
-- **Command Enhancement**
-  - currently only /quit and /nick are implemented.
-    - /users - to list connected users.
-    - /whisper - for private messages.
-    - /help - to show available commands
-- **Network Resilience**
-  - Add a retry mechanism if connecting to the server fails
-  - improve exception messages to include context(e.g, which IP/ prot failed).
