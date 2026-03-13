@@ -11,7 +11,7 @@ public class Dashboard extends JFrame {
   private JButton sendButton;
   private JPanel messagePanel;
   private JScrollPane scrollPane;
-  private boolean displayBubble = false;
+  private boolean displayBubble = true;
 
   public void setUsername(String username) {
     this.username = username;
@@ -36,10 +36,14 @@ public class Dashboard extends JFrame {
     if(displayBubble){
       messagePanel = new JPanel();
       messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
+      messagePanel.setBackground(new Color(245, 247, 250));
+      messagePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+      
       scrollPane = new JScrollPane(messagePanel);
-
       scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-      add(scrollPane, BorderLayout.CENTER);  messagePanel.setBackground(Color.WHITE);
+      scrollPane.setBorder(BorderFactory.createEmptyBorder()); // remove ugly default border
+      scrollPane.getVerticalScrollBar().setUnitIncrement(16); // smooth scrolling
+      add(scrollPane, BorderLayout.CENTER);
     } else {
       chatArea = new JTextArea();
       chatArea.setEditable(false);
@@ -53,12 +57,37 @@ public class Dashboard extends JFrame {
  }
 
   public void createInputArea(){
-    messageField = new JTextField();
-    sendButton = new JButton("Send");
-    JPanel inputPanel = new JPanel(new BorderLayout());
+    messageField = new ModernTextField();
+    messageField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    
+    ModernButton sendBtn = new ModernButton("Send");
+    sendBtn.setFont(new Font("Segoe UI", Font.BOLD, 14));
+    sendBtn.setBackground(new Color(41, 128, 185));
+    sendBtn.setForeground(Color.WHITE);
+    sendBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    sendBtn.setPreferredSize(new Dimension(80, 40));
+    
+    sendBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent e) {
+            sendBtn.setBackground(new Color(52, 152, 219));
+        }
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent e) {
+            sendBtn.setBackground(new Color(41, 128, 185));
+        }
+    });
+
+    sendButton = sendBtn;
+    
+    JPanel inputPanel = new JPanel(new BorderLayout(10, 0));
+    inputPanel.setBackground(new Color(236, 240, 241));
+    inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    
     inputPanel.add(messageField, BorderLayout.CENTER);
     inputPanel.add(sendButton, BorderLayout.EAST);
     add(inputPanel, BorderLayout.SOUTH);
+    
     sendButton.addActionListener(e->sendMessage());
     messageField.addActionListener(e->sendMessage());
   }
@@ -148,25 +177,55 @@ public class Dashboard extends JFrame {
           // Format the current time
 
           if (displayBubble) {
-            JLabel msgLabel = new JLabel("<html>" + message + "</html>");
-            msgLabel.setForeground(Color.WHITE);
-            msgLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-            msgLabel.setBorder(BorderFactory.createEmptyBorder(5, 8, 5, 8));
-            msgLabel.setOpaque(false);
+            boolean isNotification = color.equals(Color.GRAY);
+            
+            JLabel msgLabel = new JLabel("<html><p style='width: 180px;'>" + message + "</p></html>");
+            if (isNotification) {
+                msgLabel.setForeground(new Color(100, 100, 100)); // lighter text for notifications
+                msgLabel.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+                msgLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            } else {
+                msgLabel.setForeground(isSender ? Color.WHITE : new Color(44, 62, 80));
+                msgLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            }
+            msgLabel.setBorder(BorderFactory.createEmptyBorder(8, 12, 8, 12));
 
-            JPanel bubble = new JPanel();
-            bubble.setLayout(new BorderLayout());
-            bubble.setBackground(color);
-            bubble.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(3, 5, 3, 5),
-                BorderFactory.createLineBorder(color.darker(), 1, true)
-            ));
+            JPanel bubble = new JPanel(new BorderLayout()) {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    Graphics2D g2 = (Graphics2D) g.create();
+                    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                    g2.setColor(getBackground());
+                    g2.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
+                    g2.dispose();
+                }
+            };
+            bubble.setOpaque(false);
+            
+            if (isNotification) {
+                 bubble.setBackground(new Color(236, 240, 241)); // light gray bubble for notification
+            } else if (isSender) {
+                 bubble.setBackground(new Color(41, 128, 185)); // modern blue for sender
+            } else {
+                 // for others, use a very light version of their user color, or white
+                 float[] hsb = Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), null);
+                 Color pastelColor = Color.getHSBColor(hsb[0], 0.15f, 1.0f); // very light pastel
+                 bubble.setBackground(pastelColor);
+            }
+
             bubble.add(msgLabel, BorderLayout.CENTER);
-            bubble.setMaximumSize(new Dimension(250, Integer.MAX_VALUE));
+            bubble.setMaximumSize(new Dimension(280, Integer.MAX_VALUE));
+            
             JPanel wrapper = new JPanel();
             wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.X_AXIS));
             wrapper.setOpaque(false);
-            if (isSender) {
+            wrapper.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // space between messages
+            
+            if (isNotification) {
+              wrapper.add(Box.createHorizontalGlue());
+              wrapper.add(bubble);
+              wrapper.add(Box.createHorizontalGlue());
+            } else if (isSender) {
               wrapper.add(Box.createHorizontalGlue());
               wrapper.add(bubble);
             } else {
