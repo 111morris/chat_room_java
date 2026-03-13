@@ -27,87 +27,75 @@ public class SplashScreen {
 
   public SplashScreen(){
     frame = new JFrame("Chatroom Setup");
-    frame.setSize(340,250);
+    frame.setSize(400,320);
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //frame.setLayout(new GridLayout(4,2,10,10));
 
     // main panel with padding
-    JPanel mainPanel = new JPanel(new BorderLayout());
-    mainPanel.setBorder(new EmptyBorder(15,20,15,20));
-    mainPanel.setBackground(Color.WHITE);
+    JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
+    mainPanel.setBorder(new EmptyBorder(25, 30, 25, 30));
+    mainPanel.setBackground(new Color(245, 247, 250)); // modern light gray/blue background
 
     //title label
-    JLabel titleLabel = new JLabel("Chatroom Setup");
-    titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
-    titleLabel.setHorizontalAlignment(SwingConstants.LEFT);
-    titleLabel.setBorder(new EmptyBorder(0,0,15,0));
+    JLabel titleLabel = new JLabel("Join Chatroom");
+    titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
+    titleLabel.setForeground(new Color(44, 62, 80)); // dark elegant text
+    titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    titleLabel.setBorder(new EmptyBorder(0,0,20,0));
     mainPanel.add(titleLabel, BorderLayout.NORTH);
 
     //form panel
-    JPanel formPanel = new JPanel(new GridLayout(4,2,10,10));
-    formPanel.setBackground(Color.WHITE);
+    JPanel formPanel = new JPanel(new GridLayout(4,2,10,15));
+    formPanel.setBackground(mainPanel.getBackground());
+    formPanel.setOpaque(false);
 
     // username label
     JLabel userNameLabel = new JLabel("Username: ");
-    userNameLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    userNameLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+    userNameLabel.setForeground(new Color(52, 73, 94));
     // username input
-    usernameField = new JTextField();
+    usernameField = new ModernTextField();
     usernameField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
     addPlacholder(usernameField, "Enter username");
     usernameField.setToolTipText("Type your chat username here");
 
      //server port label and input
-    JLabel portLabel = new JLabel("Server port: ");
-    portLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    JLabel portLabel = new JLabel("Server Port: ");
+    portLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+    portLabel.setForeground(new Color(52, 73, 94));
 
-    serverPortField = new JTextField();
+    serverPortField = new ModernTextField();
     serverPortField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
     addPlacholder(serverPortField, "e.g. 9999");
     serverPortField.setToolTipText("Enter the server port number");
 
     //sever ip Label and input
     JLabel ipLabel = new JLabel("Server IP: ");
-    ipLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    ipAddressField = new JTextField();
+    ipLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+    ipLabel.setForeground(new Color(52, 73, 94));
+    ipAddressField = new ModernTextField();
     ipAddressField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
     addPlacholder(ipAddressField, "127.0.0.1");
     ipAddressField.setToolTipText("Enter the server IP address");
 
     //the connect button
-    JButton connectButton = new JButton("Connect");
+    ModernButton connectButton = new ModernButton("Connect");
     connectButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
-    connectButton.setBackground(new Color(33,150,243));
+    connectButton.setBackground(new Color(41, 128, 185)); // modern blue
     connectButton.setForeground(Color.WHITE);
-    connectButton.setFocusPainted(false);
-//    connectButton.setBorder(BorderFactory.createEmptyBorder(8,20,8,20));
     connectButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    connectButton.addMouseListener(new MouseListener() {
-
-      @Override
-      public void mouseClicked(MouseEvent e) {
-
-      }
-
-      @Override
-      public void mousePressed(MouseEvent e) {
-
-      }
-
-      @Override
-      public void mouseReleased(MouseEvent e) {
-
-      }
-
+    
+    // Modern hover effect
+    connectButton.addMouseListener(new MouseAdapter() {
       @Override
       public void mouseEntered(MouseEvent e) {
-        connectButton.setBackground(new Color(30,136,229));
+        connectButton.setBackground(new Color(52, 152, 219)); // lighter blue on hover
       }
 
       @Override
       public void mouseExited(MouseEvent e) {
-        connectButton.setBackground(new Color(33,150,243));
+        connectButton.setBackground(new Color(41, 128, 185));
       }
     });
 
